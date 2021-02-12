@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +74,7 @@ public class Discover_F extends RootFragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_discover, container, false);
         context = getContext();
 
-       // Functions.white_status_bar(getActivity());
+        // Functions.white_status_bar(getActivity());
 
         datalist = new ArrayList<>();
 
@@ -246,7 +247,7 @@ public class Discover_F extends RootFragment implements View.OnClickListener {
     public void Parse_data(String responce) {
 
         datalist.clear();
-
+        Log.w("msg", "responce_discove== " + responce);
         try {
             JSONObject jsonObject = new JSONObject(responce);
             String code = jsonObject.optString("code");
@@ -260,7 +261,7 @@ public class Discover_F extends RootFragment implements View.OnClickListener {
                     Discover_Get_Set discover_get_set = new Discover_Get_Set();
                     discover_get_set.title = Hashtag.optString("name");
                     discover_get_set.views = Hashtag.optString("views");
-                    discover_get_set.videos_count=Hashtag.optString("videos_count");
+                    discover_get_set.videos_count = Hashtag.optString("videos_count");
 
                     JSONArray video_array = Hashtag.optJSONArray("Videos");
 

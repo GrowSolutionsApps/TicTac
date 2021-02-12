@@ -10,8 +10,9 @@
 
 
     
-    <string name="google_web_client_id">google_auth_web_client_id</string>
-    
+    <string name="google_web_client_id">153945693375-6rjj62kbkbkvf7aes9g1un29nasonjdd.apps.googleusercontent.com</string>
+<!--    <string name="google_web_client_id">google_auth_web_client_id</string>-->
+
 
     
     <string name="gif_api_key">gif_api_key_here</string>

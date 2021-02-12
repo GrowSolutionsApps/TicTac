@@ -95,7 +95,6 @@ public class MainMenuFragment extends RootFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         // Note that we are passing childFragmentManager, not FragmentManager
         adapter = new ViewPagerAdapter(getResources(), getChildFragmentManager());
         pager.setAdapter(adapter);
@@ -180,6 +179,7 @@ public class MainMenuFragment extends RootFragment {
                         Functions.black_status_bar(getActivity());
                         OnHome_Click();
                         image.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_white));
+                        image.setColorFilter(ContextCompat.getColor(context, R.color.app_color), android.graphics.PorterDuff.Mode.SRC_IN);
                         title.setTextColor(context.getResources().getColor(R.color.white));
                         break;
 
