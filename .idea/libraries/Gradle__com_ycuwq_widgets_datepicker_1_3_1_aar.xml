@@ -4,6 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/052e487d3b837d1ba06d34750a8880db/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/052e487d3b837d1ba06d34750a8880db/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/052e487d3b837d1ba06d34750a8880db/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca12a88ab700099293357ec1d901eee2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca12a88ab700099293357ec1d901eee2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ca12a88ab700099293357ec1d901eee2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ycuwq.widgets/datepicker/1.3.1/ffb018cfdce64b3dfd26b56b63474f8b8e0adc8e/datepicker-1.3.1-javadoc.jar!/" />

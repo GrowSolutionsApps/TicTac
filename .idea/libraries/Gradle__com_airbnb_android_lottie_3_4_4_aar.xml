@@ -2,11 +2,15 @@
   <library name="Gradle: com.airbnb.android:lottie:3.4.4@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e2b4bd635422a5758eb93d268347d8c/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa123d53fbfed5be2faacbd82dda5bbc/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e2b4bd635422a5758eb93d268347d8c/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e2b4bd635422a5758eb93d268347d8c/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e2b4bd635422a5758eb93d268347d8c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa123d53fbfed5be2faacbd82dda5bbc/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa123d53fbfed5be2faacbd82dda5bbc/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa123d53fbfed5be2faacbd82dda5bbc/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.airbnb.android/lottie/3.4.4/a2a82de610ecced068f096d4bfc2ffbc147fe797/lottie-3.4.4-javadoc.jar!/" />

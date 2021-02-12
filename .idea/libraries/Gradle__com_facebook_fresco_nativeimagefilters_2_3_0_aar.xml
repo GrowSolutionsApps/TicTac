@@ -4,6 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e4f663a79850dbe25785614235a4cf10/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e4f663a79850dbe25785614235a4cf10/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e4f663a79850dbe25785614235a4cf10/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76ffd71c8761894f7380e0db180e38dc/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76ffd71c8761894f7380e0db180e38dc/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76ffd71c8761894f7380e0db180e38dc/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/nativeimagefilters/2.3.0/7d6371e699adb7f91eafad46cb108215b4ab0443/nativeimagefilters-2.3.0-javadoc.jar!/" />

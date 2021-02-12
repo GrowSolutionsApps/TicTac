@@ -2,11 +2,15 @@
   <library name="Gradle: com.google.android.exoplayer:exoplayer-core:2.11.1@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bbe10fbf656839326bf8ef551aeb809f/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5563cddd646ce1f4001385917dfb7f8c/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bbe10fbf656839326bf8ef551aeb809f/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bbe10fbf656839326bf8ef551aeb809f/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bbe10fbf656839326bf8ef551aeb809f/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5563cddd646ce1f4001385917dfb7f8c/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5563cddd646ce1f4001385917dfb7f8c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5563cddd646ce1f4001385917dfb7f8c/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-core/2.11.1/ccfa3f4f83e4a51e3a01232ca32a9852bab6a4ae/exoplayer-core-2.11.1-javadoc.jar!/" />

@@ -178,7 +178,7 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
 
         login_title_txt=findViewById(R.id.login_title_txt);
-        login_title_txt.setText("You need a "+getString(R.string.app_name)+"\naccount to Continue");
+//        login_title_txt.setText("You need a "+getString(R.string.app_name)+"\naccount to Continue");
 
 
 

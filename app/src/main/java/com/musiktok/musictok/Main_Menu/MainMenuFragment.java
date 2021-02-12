@@ -95,7 +95,6 @@ public class MainMenuFragment extends RootFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         // Note that we are passing childFragmentManager, not FragmentManager
         adapter = new ViewPagerAdapter(getResources(), getChildFragmentManager());
         pager.setAdapter(adapter);

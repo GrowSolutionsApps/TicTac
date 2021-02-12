@@ -4,6 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb41651a316a67bd53520dbec39f594d/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb41651a316a67bd53520dbec39f594d/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb41651a316a67bd53520dbec39f594d/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eac2608c7d394fca6ef9bb63f93b7487/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eac2608c7d394fca6ef9bb63f93b7487/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eac2608c7d394fca6ef9bb63f93b7487/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-ads-lite/19.5.0/48296bb91c7514705b2fc4edd0878c0de2760adc/play-services-ads-lite-19.5.0-javadoc.jar!/" />

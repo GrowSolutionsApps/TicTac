@@ -2,11 +2,15 @@
   <library name="Gradle: com.wonderkiln:camerakit:0.13.0@aar">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a30083d790c647a8af080f2289db6a0b/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d8cccee13982fd9904c8b31bafd05c8/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a30083d790c647a8af080f2289db6a0b/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a30083d790c647a8af080f2289db6a0b/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a30083d790c647a8af080f2289db6a0b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d8cccee13982fd9904c8b31bafd05c8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d8cccee13982fd9904c8b31bafd05c8/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d8cccee13982fd9904c8b31bafd05c8/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
