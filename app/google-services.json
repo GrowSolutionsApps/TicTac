@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "153945693375",
+    "project_id": "musiktok-ba3a5",
+    "storage_bucket": "musiktok-ba3a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153945693375:android:20bd49a31130e8667f3a0a",
+        "android_client_info": {
+          "package_name": "com.musiktok.videoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153945693375-6rjj62kbkbkvf7aes9g1un29nasonjdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZlueSi58m-Mp3RlOP7Ss4vd3rTyHWSdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153945693375-6rjj62kbkbkvf7aes9g1un29nasonjdd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

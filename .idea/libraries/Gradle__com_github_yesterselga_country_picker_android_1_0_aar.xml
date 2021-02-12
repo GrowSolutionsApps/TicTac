@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.yesterselga:country-picker-android:1.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fc9e402f128c2802d5bcb1d6b3d5344d/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fc9e402f128c2802d5bcb1d6b3d5344d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fc9e402f128c2802d5bcb1d6b3d5344d/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
