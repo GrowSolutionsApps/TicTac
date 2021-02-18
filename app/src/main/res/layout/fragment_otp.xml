@@ -27,26 +27,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/Goback"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp">
+
+                    <ImageButton
+                        android:id="@+id/Goback"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/transparent"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
+                <!-- <ImageButton
+                     android:id="@+id/Goback"
+                     android:layout_width="@dimen/_9sdp"
+                     android:layout_height="@dimen/_16sdp"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentLeft="true"
+                     android:layout_centerVertical="true"
+                     android:layout_marginStart="@dimen/_15sdp"
+                     android:background="@android:color/transparent"
+                     android:scaleType="fitStart"
+                     android:src="@drawable/ic_new_back"
+                     android:tint="@color/black" />-->
 
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/main_div"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,21 +143,21 @@
                 </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/send_otp_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/login_terms_condition_txt"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:clickable="false"
-                    android:enabled="false"
-                    android:gravity="center"
-                    android:text="Next"
-                    android:textColor="@color/white"
-                    android:textSize="14dp"
-                    android:theme="@style/Button_style" />
+                <!--   <Button
+                       android:id="@+id/send_otp_btn"
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:layout_below="@+id/login_terms_condition_txt"
+                       android:layout_centerInParent="true"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="40dp"
+                       android:clickable="false"
+                       android:enabled="false"
+                       android:gravity="center"
+                       android:text="Next"
+                       android:textColor="@color/white"
+                       android:textSize="14dp"
+                       android:theme="@style/Button_style" />-->
 
                 <RelativeLayout
                     android:id="@+id/rl1_id"
@@ -172,7 +191,7 @@
                     android:id="@+id/request_call"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_toStartOf="@+id/or_id"
                     android:text="Didn't get a code? Request phone call"
                     android:textSize="16dp" />
@@ -191,7 +210,32 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/send_otp_btn"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:background="@drawable/img_new_next_bg_disable"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_new_next"
+                    android:text="Next"
+                    android:textSize="14dp"
+                    android:theme="@style/Button_style" />
+
+            </LinearLayout>
+        </RelativeLayout>
 
 
     </RelativeLayout>

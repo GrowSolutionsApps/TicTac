@@ -6,7 +6,7 @@
             android:topRightRadius="25dp"
             android:topLeftRadius="25dp"
             android:bottomLeftRadius="25dp"/>
-        <solid android:color="@color/gainsboro" />
+        <solid android:color="@color/new_app_color" />
     </shape>
 </item>
 <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="1dp">
@@ -16,7 +16,11 @@
             android:topRightRadius="25dp"
             android:topLeftRadius="25dp"
             android:bottomLeftRadius="25dp"/>
-        <solid android:color="@color/app_color"></solid>
+<!--        <solid android:color="@color/app_color"></solid>-->
+        <gradient
+            android:startColor="@color/new_app_color"
+            android:endColor="@color/new_app_color"
+            android:angle="360" />
     </shape>
 </item>
 </layer-list>

@@ -27,19 +27,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/Goback"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                <!-- <ImageButton
+                     android:id="@+id/Goback"
+                     android:layout_width="@dimen/_9sdp"
+                     android:layout_height="@dimen/_16sdp"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentLeft="true"
+                     android:layout_centerVertical="true"
+                     android:layout_marginStart="5dp"
+                     android:layout_marginLeft="@dimen/_10sdp"
+                     android:background="@android:color/transparent"
+                     android:scaleType="fitStart"
+                     android:src="@drawable/ic_new_back"
+                     android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:layout_marginLeft="@dimen/_15sdp">
+
+                    <ImageButton
+                        android:id="@+id/Goback"
+                        android:layout_width="@dimen/_9sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/signup_txt"
@@ -51,7 +71,8 @@
                     android:text="Sign up"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
@@ -66,27 +87,38 @@
             android:layout_below="@+id/toolbar"
             android:orientation="vertical">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+            <RelativeLayout
+                android:id="@+id/relTab"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_alignParentTop="true"
-                android:layout_weight="1"
-                android:gravity="center"
-                app:tabBackground="@color/white"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@color/app_color"
-                app:tabMode="fixed"
-                app:tabPaddingEnd="0dp"
-                app:tabPaddingStart="0dp"
-                app:tabSelectedTextColor="@color/black"
-                app:tabTextColor="@color/dimgray" />
+                android:layout_margin="@dimen/_15sdp"
+                android:background="@drawable/edttxt_bg">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="fill"
+                    app:tabIconTint="@drawable/tab_selector"
+                    app:tabIndicatorColor="@color/app_color"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed"
+                    app:tabPaddingEnd="0dp"
+                    app:tabPaddingStart="0dp"
+                    app:tabSelectedTextColor="#FFFFFF"
+                    app:tabTextColor="@color/new_app_color" />
+            </RelativeLayout>
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tabs" />
+                android:layout_below="@+id/relTab" />
 
         </RelativeLayout>
 

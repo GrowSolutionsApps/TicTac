@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,7 +118,6 @@ public class UserVideo_F extends Fragment {
     }
 
 
-
     @Override
     public void setMenuVisibility(final boolean visible) {
         super.setMenuVisibility(visible);
@@ -129,8 +129,6 @@ public class UserVideo_F extends Fragment {
 
         }, 200);
     }
-
-
 
 
     @Override
@@ -218,7 +216,7 @@ public class UserVideo_F extends Fragment {
     }
 
     private void OpenWatchVideo(int postion) {
-
+        Log.w("msg", "Watch_video== ");
         Intent intent = new Intent(getActivity(), WatchVideos_F.class);
         intent.putExtra("arraylist", data_list);
         intent.putExtra("position", postion);

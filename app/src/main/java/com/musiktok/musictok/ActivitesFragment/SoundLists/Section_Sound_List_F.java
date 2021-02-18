@@ -59,8 +59,7 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-public class Section_Sound_List_F extends RootFragment implements Player.EventListener,View.OnClickListener  {
-
+public class Section_Sound_List_F extends RootFragment implements Player.EventListener, View.OnClickListener {
 
 
     View view;
@@ -86,7 +85,6 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     RelativeLayout no_data_layout;
 
 
-
     int page_count = 0;
     boolean ispost_finsh;
     ProgressBar load_more_progress;
@@ -99,29 +97,30 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_section_sound_list, container, false);
-        context=getContext();
+        view = inflater.inflate(R.layout.fragment_section_sound_list, container, false);
+        context = getContext();
 
 
-        title_txt=view.findViewById(R.id.title_txt);
+        title_txt = view.findViewById(R.id.title_txt);
 
 
-        Bundle bundle=getArguments();
-        if(bundle!=null){
+        Bundle bundle = getArguments();
+        if (bundle != null) {
 
-            id=bundle.getString("id");
+            id = bundle.getString("id");
             title_txt.setText(bundle.getString("name"));
         }
 
 
-        running_sound_id="none";
+        running_sound_id = "none";
         PRDownloader.initialize(context);
 
         view.findViewById(R.id.back_btn).setOnClickListener(this::onClick);
-        pbar=view.findViewById(R.id.pbar);
-        load_more_progress=view.findViewById(R.id.load_more_progress);
+        view.findViewById(R.id.rel_back).setOnClickListener(this::onClick);
+        pbar = view.findViewById(R.id.pbar);
+        load_more_progress = view.findViewById(R.id.load_more_progress);
 
-        no_data_layout =view.findViewById(R.id.no_data_layout);
+        no_data_layout = view.findViewById(R.id.no_data_layout);
 
         recyclerView = view.findViewById(R.id.listview);
         linearLayoutManager = new LinearLayoutManager(context);
@@ -162,14 +161,13 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
         });
 
 
-
-        swiperefresh=view.findViewById(R.id.swiperefresh);
+        swiperefresh = view.findViewById(R.id.swiperefresh);
         swiperefresh.setColorSchemeResources(R.color.black);
         swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                page_count=0;
+                page_count = 0;
 
                 Call_api();
             }
@@ -185,10 +183,8 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-
-
-    public void Set_adapter(){
-        datalist=new ArrayList<>();
+    public void Set_adapter() {
+        datalist = new ArrayList<>();
 
         adapter = new SoundList_Adapter(context, datalist, new Adapter_Click_Listener() {
             @Override
@@ -219,13 +215,13 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-    public void Call_api(){
+    public void Call_api() {
 
-        JSONObject params=new JSONObject();
+        JSONObject params = new JSONObject();
         try {
-            params.put("starting_point",page_count);
-            params.put("sound_section_id",id);
-            params.put("user_id", Functions.getSharedPreference(context).getString(Variables.u_id,""));
+            params.put("starting_point", page_count);
+            params.put("sound_section_id", id);
+            params.put("user_id", Functions.getSharedPreference(context).getString(Variables.u_id, ""));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -242,50 +238,47 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
 
     }
 
-    public void Parse_data(String responce){
+    public void Parse_data(String responce) {
 
 
         try {
-            JSONObject jsonObject=new JSONObject(responce);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
+            JSONObject jsonObject = new JSONObject(responce);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
 
-                JSONArray msgArray=jsonObject.getJSONArray("msg");
+                JSONArray msgArray = jsonObject.getJSONArray("msg");
 
-                ArrayList<Sounds_GetSet> templist=new ArrayList<>();
-                for(int i=0;i<msgArray.length();i++){
+                ArrayList<Sounds_GetSet> templist = new ArrayList<>();
+                for (int i = 0; i < msgArray.length(); i++) {
                     JSONObject itemdata = msgArray.optJSONObject(i).optJSONObject("Sound");
 
-                    Sounds_GetSet item=new Sounds_GetSet();
+                    Sounds_GetSet item = new Sounds_GetSet();
 
-                    item.id=itemdata.optString("id");
+                    item.id = itemdata.optString("id");
 
-                    item.acc_path=itemdata.optString("audio");
-                    if(!item.acc_path.contains(Variables.http)){
-                       item.acc_path=ApiLinks.BASE_URL +item.acc_path;
+                    item.acc_path = itemdata.optString("audio");
+                    if (!item.acc_path.contains(Variables.http)) {
+                        item.acc_path = ApiLinks.BASE_URL + item.acc_path;
                     }
 
-                    item.sound_name=itemdata.optString("name");
-                    item.description=itemdata.optString("description");
-                    item.section=itemdata.optString("section");
+                    item.sound_name = itemdata.optString("name");
+                    item.description = itemdata.optString("description");
+                    item.section = itemdata.optString("section");
 
 
-                    item.thum=itemdata.optString("thum");
-                    if(!item.thum.contains(Variables.http)){
-                        item.thum=ApiLinks.BASE_URL +item.thum;
+                    item.thum = itemdata.optString("thum");
+                    if (!item.thum.contains(Variables.http)) {
+                        item.thum = ApiLinks.BASE_URL + item.thum;
                     }
 
 
-
-                    item.duration=itemdata.optString("duration");
-                    item.date_created=itemdata.optString("created");
+                    item.duration = itemdata.optString("duration");
+                    item.date_created = itemdata.optString("created");
                     item.fav = itemdata.optString("favourite");
 
 
                     templist.add(item);
                 }
-
-
 
 
                 if (page_count == 0) {
@@ -299,8 +292,7 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
 
                         recyclerView.setAdapter(adapter);
                     }
-                }
-                else {
+                } else {
 
                     if (datalist.isEmpty())
                         ispost_finsh = true;
@@ -312,9 +304,7 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
                 }
 
 
-            }
-
-            else {
+            } else {
                 no_data_layout.setVisibility(View.VISIBLE);
             }
 
@@ -327,22 +317,21 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-
-
     View previous_view;
     SimpleExoPlayer player;
     Thread thread;
-    String previous_url="none";
-    public void playaudio(View view, final Sounds_GetSet item){
-        previous_view=view;
+    String previous_url = "none";
 
-        if(previous_url.equals(item.acc_path)){
-            previous_url="none";
-            running_sound_id="none";
-        }else {
+    public void playaudio(View view, final Sounds_GetSet item) {
+        previous_view = view;
 
-            previous_url=item.acc_path;
-            running_sound_id=item.id;
+        if (previous_url.equals(item.acc_path)) {
+            previous_url = "none";
+            running_sound_id = "none";
+        } else {
+
+            previous_url = item.acc_path;
+            running_sound_id = item.id;
 
             DefaultTrackSelector trackSelector = new DefaultTrackSelector();
             player = ExoPlayerFactory.newSimpleInstance(context, trackSelector);
@@ -353,7 +342,7 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
             MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
                     .createMediaSource(Uri.parse(item.acc_path));
 
-            Log.d(Variables.tag,item.acc_path);
+            Log.d(Variables.tag, item.acc_path);
 
             player.prepare(videoSource);
             player.addListener(this);
@@ -366,8 +355,8 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-    public void StopPlaying(){
-        if(player!=null){
+    public void StopPlaying() {
+        if (player != null) {
             player.setPlayWhenReady(false);
             player.removeListener(this);
             player.release();
@@ -381,17 +370,17 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     @Override
     public void onStart() {
         super.onStart();
-        active=true;
+        active = true;
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        active=false;
+        active = false;
 
-        running_sound_id="null";
+        running_sound_id = "null";
 
-        if(player!=null){
+        if (player != null) {
             player.setPlayWhenReady(false);
             player.removeListener(this);
             player.release();
@@ -402,7 +391,7 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-    public void Show_Run_State(){
+    public void Show_Run_State() {
 
         if (previous_view != null) {
             previous_view.findViewById(R.id.loading_progress).setVisibility(View.GONE);
@@ -413,13 +402,13 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-    public void Show_loading_state(){
+    public void Show_loading_state() {
         previous_view.findViewById(R.id.play_btn).setVisibility(View.GONE);
         previous_view.findViewById(R.id.loading_progress).setVisibility(View.VISIBLE);
     }
 
 
-    public void show_Stop_state(){
+    public void show_Stop_state() {
 
         if (previous_view != null) {
             previous_view.findViewById(R.id.play_btn).setVisibility(View.VISIBLE);
@@ -428,18 +417,18 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
             previous_view.findViewById(R.id.done).setVisibility(View.GONE);
         }
 
-        running_sound_id="none";
+        running_sound_id = "none";
 
     }
 
 
-    public void Down_load_mp3(final String id,final String sound_name, String url){
+    public void Down_load_mp3(final String id, final String sound_name, String url) {
 
-        final ProgressDialog progressDialog=new ProgressDialog(context);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Please Wait...");
         progressDialog.show();
 
-        prDownloader= PRDownloader.download(url, Variables.app_hided_folder, Variables.SelectedAudio_AAC)
+        prDownloader = PRDownloader.download(url, Variables.app_hided_folder, Variables.SelectedAudio_AAC)
                 .build();
 
         prDownloader.start(new OnDownloadListener() {
@@ -447,9 +436,9 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
             public void onDownloadComplete() {
                 progressDialog.dismiss();
                 Intent output = new Intent();
-                output.putExtra("isSelected","yes");
-                output.putExtra("sound_name",sound_name);
-                output.putExtra("sound_id",id);
+                output.putExtra("isSelected", "yes");
+                output.putExtra("sound_name", sound_name);
+                output.putExtra("sound_id", id);
                 getActivity().setResult(RESULT_OK, output);
                 getActivity().finish();
                 getActivity().overridePendingTransition(R.anim.in_from_top, R.anim.out_from_bottom);
@@ -462,7 +451,6 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
         });
 
     }
-
 
 
     private void Call_Api_For_Fav_sound(final int pos, final Sounds_GetSet item) {
@@ -500,16 +488,14 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
     }
 
 
-
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
 
-        if(playbackState== Player.STATE_BUFFERING){
+        if (playbackState == Player.STATE_BUFFERING) {
             Show_loading_state();
-        }
-        else if(playbackState==Player.STATE_READY){
+        } else if (playbackState == Player.STATE_READY) {
             Show_Run_State();
-        }else if(playbackState==Player.STATE_ENDED){
+        } else if (playbackState == Player.STATE_ENDED) {
             show_Stop_state();
         }
 
@@ -518,8 +504,11 @@ public class Section_Sound_List_F extends RootFragment implements Player.EventLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.back_btn:
+                getActivity().onBackPressed();
+                break;
+            case R.id.rel_back:
                 getActivity().onBackPressed();
                 break;
         }

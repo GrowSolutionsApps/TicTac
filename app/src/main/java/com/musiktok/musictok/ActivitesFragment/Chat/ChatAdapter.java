@@ -151,12 +151,20 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // check if the message is from sender or receiver
             if(chat.getSender_id().equals(myID)){
                 if(chat.getStatus().equals("1"))
-                    chatviewholder.message_seen.setText("Seen at "+ChangeDate_to_time(chat.getTime()));
+                    chatviewholder.txtTime.setText("Seen at "+ChangeDate_to_time(chat.getTime()));
                 else
-                    chatviewholder.message_seen.setText("Sent");
+                    try {
+                        chatviewholder.txtTime.setText("Sent");
+                    } catch (Exception e) {
+
+                    }
 
             }else {
-                chatviewholder.message_seen.setText("");
+                try {
+                    chatviewholder.txtTime.setText("");
+                } catch (Exception e) {
+
+                }
             }
         // make the group of message by date set the gap of 1 min
         // means message send with in 1 min will show as a group

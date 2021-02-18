@@ -117,7 +117,7 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.CustomViewHo
                 holder.like_image.setLiked(true);
             } else {
                 //holder.like_image.animate().cancel();
-                holder.like_image.setLikeDrawable(context.getResources().getDrawable(R.drawable.ic_unliked));
+                holder.like_image.setLikeDrawable(context.getResources().getDrawable(R.drawable.ic_new_heart));
                 holder.like_image.setLiked(false);
                 holder.like_image.animate().cancel();
             }

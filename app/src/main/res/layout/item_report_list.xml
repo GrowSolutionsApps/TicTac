@@ -20,6 +20,7 @@
             android:layout_toRightOf="@+id/user_pic"
             android:gravity="center"
             android:padding="15dp"
+            android:fontFamily="@font/pop_regular"
             android:text="123456"
             android:layout_centerVertical="true"
             android:textColor="@color/black"

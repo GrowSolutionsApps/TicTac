@@ -25,7 +25,7 @@
                 android:background="@color/transparent"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_white_cross"
+                android:src="@drawable/ic_new_back"
                 android:tint="@color/black" />
 
 
@@ -35,8 +35,8 @@
                 android:layout_centerInParent="true"
                 android:text="Select Video"
                 android:textColor="@color/black"
-                android:textSize="@dimen/title"
-                android:textStyle="bold" />
+                android:fontFamily="@font/pop_medium"
+                android:textSize="@dimen/title" />
 
         </RelativeLayout>
 

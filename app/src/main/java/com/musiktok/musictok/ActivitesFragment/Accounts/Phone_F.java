@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -54,10 +56,11 @@ public class Phone_F extends Fragment implements View.OnClickListener {
     String country_dialing_code = "", countryCodeValue, mPhoneNumber, fromWhere;
     EditText phone_edit;
     User_Model user__model;
-    Button btn_send_code;
+    LinearLayout btn_send_code;
     TextView login_terms_condition_txt;
     String phoneNo;
     CountryCodePicker ccp;
+//    RelativeLayout rel_back;
 
     public Phone_F(User_Model user__model, String fromWhere) {
         this.user__model = user__model;
@@ -70,13 +73,14 @@ public class Phone_F extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add_phone, container, false);
         initView();
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         clickListnere();
         TelephonyManager tm = (TelephonyManager) getActivity().getSystemService(getActivity().TELEPHONY_SERVICE);
         if (tm != null) {
             countryCodeValue = tm.getNetworkCountryIso().toUpperCase();
             int cc = PhoneNumberUtil.createInstance(getActivity()).getCountryCodeForRegion(countryCodeValue);
-            tv_country_code.setText(countryCodeValue.toUpperCase() + " " + cc);
+            tv_country_code.setText("+" + cc);
+//            tv_country_code.setText(countryCodeValue.toUpperCase() + " " + cc);
             country_dialing_code = String.valueOf(cc);
         }
 
@@ -88,11 +92,17 @@ public class Phone_F extends Fragment implements View.OnClickListener {
 
         }
 
-
+       /* rel_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });*/
         return view;
     }
 
     private void initView() {
+//        rel_back = view.findViewById(R.id.rel_back);
         tv_country_code = view.findViewById(R.id.country_code);
         login_terms_condition_txt = view.findViewById(R.id.login_terms_condition_txt);
         container = view.findViewById(R.id.container);
@@ -114,9 +124,11 @@ public class Phone_F extends Fragment implements View.OnClickListener {
                 String txtName = phone_edit.getText().toString();
                 if (txtName.length() > 0) {
                     btn_send_code.setEnabled(true);
+                    btn_send_code.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg));
                     btn_send_code.setClickable(true);
                 } else {
                     btn_send_code.setEnabled(false);
+                    btn_send_code.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg_disable));
                     btn_send_code.setClickable(false);
                 }
             }
@@ -212,7 +224,7 @@ public class Phone_F extends Fragment implements View.OnClickListener {
                 transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
                 Bundle bundle = new Bundle();
                 String phone_no = phone_edit.getText().toString();
-                bundle.putString("phone_number",phoneNo);
+                bundle.putString("phone_number", phoneNo);
                 user__model.phone_no = phone_no;
                 bundle.putSerializable("user_data", user__model);
                 phoneOtp_f.setArguments(bundle);

@@ -31,18 +31,38 @@
                 android:background="@drawable/d_bottom_gray_line">
 
 
-                <ImageButton
-                    android:id="@+id/back_btn"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                <!--  <ImageButton
+                      android:id="@+id/back_btn"
+                      android:layout_width="@dimen/_9sdp"
+                      android:layout_height="@dimen/_16sdp"
+                      android:layout_alignParentLeft="true"
+                      android:layout_centerVertical="true"
+                      android:layout_marginLeft="@dimen/_15sdp"
+                      android:background="@color/transparent"
+                      android:scaleType="fitStart"
+                      android:src="@drawable/ic_new_back"
+                      android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp">
 
+                    <ImageButton
+                        android:id="@+id/back_btn"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@color/transparent"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/username"
@@ -51,10 +71,10 @@
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/pop_medium"
                     android:text="Report"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/title" />
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -140,7 +160,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:background="@drawable/button_rounded_background"
+            android:background="@drawable/login_btn_draw"
             android:gravity="center"
             android:windowSoftInputMode="adjustPan|adjustResize">
 

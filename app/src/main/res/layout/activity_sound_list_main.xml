@@ -48,8 +48,8 @@
                     android:layout_marginBottom="5dp"
                     android:text="Add Sound"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/pop_medium"
+                    android:textSize="@dimen/title" />
 
             </RelativeLayout>
 

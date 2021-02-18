@@ -37,7 +37,6 @@ public class SoundList_Main_A extends AppCompatActivity implements View.OnClickL
         pager.setAdapter(adapter);
         tablayout.setupWithViewPager(pager);
 
-
         findViewById(R.id.Goback).setOnClickListener(this);
 
 

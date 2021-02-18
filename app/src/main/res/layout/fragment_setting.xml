@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Setting_F"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.musiktok.videoapp.com.musiktok.musictok.ActivitesFragment.Setting_F">
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -24,29 +23,45 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/d_bottom_gray_line">
+               >
 
-                <ImageButton
+                <!--<ImageView
                     android:id="@+id/Goback"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                    android:layout_width="@dimen/_9sdp"
+                    android:layout_height="@dimen/_16sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp">
 
+                    <ImageView
+                        android:id="@+id/Goback"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
+                    android:fontFamily="@font/pop_medium"
                     android:text="Privacy and Settings"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/title" />
 
 
             </RelativeLayout>
@@ -60,72 +75,164 @@
             android:layout_margin="10dp"
             android:orientation="vertical">
 
-            <TextView
+            <RelativeLayout
                 android:id="@+id/request_verification_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bottom_gray_line"
-                android:padding="15dp"
-                android:text="Request Verification"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:fontFamily="@font/pop_regular"
+                    android:padding="15dp"
+                    android:text="Request Verification"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:rotation="180"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black">
+
+                </ImageView>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/push_notification_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bottom_gray_line"
-                android:padding="15dp"
-                android:text="Push Notification"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:fontFamily="@font/pop_regular"
+                    android:padding="15dp"
+                    android:text="Push Notification"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:rotation="180"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black"></ImageView>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/privacy_setting_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bottom_gray_line"
-                android:padding="15dp"
-                android:text="Privacy Setting"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:fontFamily="@font/pop_regular"
+                    android:padding="15dp"
+                    android:text="Privacy Setting"
+
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:rotation="180"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black"></ImageView>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/privacy_policy_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bottom_gray_line"
-                android:padding="15dp"
-                android:text="Privacy Policy"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:fontFamily="@font/pop_regular"
+                    android:padding="15dp"
+                    android:text="Privacy Policy"
+
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:rotation="180"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black"></ImageView>
+            </RelativeLayout>
+            <RelativeLayout
                 android:id="@+id/terms_condition_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bottom_gray_line"
-                android:padding="15dp"
-                android:text="Terms &amp; Conditions"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
-            <TextView
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:fontFamily="@font/pop_regular"
+                    android:padding="15dp"
+                    android:text="Terms &amp; Conditions"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:rotation="180"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black"></ImageView>
+            </RelativeLayout>
+            <RelativeLayout
                 android:id="@+id/change_password_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bottom_gray_line"
-                android:padding="15dp"
-                android:text="Change Password"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:fontFamily="@font/pop_regular"
+                    android:padding="15dp"
+                    android:text="Change Password"
+
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:rotation="180"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black"></ImageView>
+            </RelativeLayout>
 
         </LinearLayout>
 

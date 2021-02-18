@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/colorPrimary"
+        android:drawable="@drawable/rect_gredient"
+        android:state_selected="true" />
+    <item android:color="@color/new_grey"
+        android:drawable="@color/new_grey" />
+</selector>

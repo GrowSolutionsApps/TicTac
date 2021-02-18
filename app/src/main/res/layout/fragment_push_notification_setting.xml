@@ -35,24 +35,44 @@
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/pop_medium"
                     android:text="Push Notifications"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/title" />
 
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/Push_Notification_Setting_F_img_back"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                    android:layout_width="@dimen/_9sdp"
+                    android:layout_height="@dimen/_16sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:background="@color/transparent"
                     android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp">
 
+                    <ImageButton
+                        android:id="@+id/Push_Notification_Setting_F_img_back"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/transparent"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -74,10 +94,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="10dp"
+                android:fontFamily="@font/pop_medium"
                 android:text="Interactions"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
 
             <LinearLayout
@@ -96,6 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pop_regular"
                         android:text="Likes"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
@@ -116,6 +137,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_light"
                     android:paddingRight="55dp"
                     android:text="Choose if you like to receive push notification on every like"
                     android:textColor="@color/light_gray"
@@ -133,6 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pop_regular"
                         android:text="Comments"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
@@ -153,6 +176,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_light"
                     android:paddingRight="55dp"
                     android:text="Choose if you like to receive push notification on every comment"
                     android:textColor="@color/light_gray"
@@ -170,6 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pop_regular"
                         android:text="New Followers"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
@@ -190,6 +215,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_light"
                     android:paddingRight="55dp"
                     android:text="Choose if you like to receive push notification on every new follower"
                     android:textColor="@color/light_gray"
@@ -207,6 +233,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pop_regular"
                         android:text="Mentions"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
@@ -227,6 +254,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_light"
                     android:paddingRight="55dp"
                     android:text="Choose if you like to receive push notification when someone mention you in his/her post"
                     android:textColor="@color/light_gray"
@@ -245,6 +273,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_regular"
                     android:text="Meseges"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -262,6 +291,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pop_light"
                         android:text="Direct Meseges"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
@@ -282,6 +312,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_light"
                     android:paddingRight="55dp"
                     android:text="Choose if you like to receive push notification when someoe send you direct message"
                     android:textColor="@color/light_gray"
@@ -300,6 +331,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_regular"
                     android:text="Video Updates"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -317,6 +349,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/pop_light"
                         android:text="Video From Accounts You Follow"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
@@ -337,6 +370,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/pop_light"
                     android:paddingRight="55dp"
                     android:text="Choose if you like to receive push notification when someone on your following list post new video"
                     android:textColor="@color/light_gray"

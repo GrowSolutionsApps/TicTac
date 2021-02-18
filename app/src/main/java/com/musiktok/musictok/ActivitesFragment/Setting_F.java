@@ -3,6 +3,7 @@ package com.musiktok.musictok.ActivitesFragment;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -34,10 +35,11 @@ public class Setting_F extends RootFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_setting, container, false);
-        context=getContext();
+        view = inflater.inflate(R.layout.fragment_setting, container, false);
+        context = getContext();
 
         view.findViewById(R.id.Goback).setOnClickListener(this);
+        view.findViewById(R.id.rel_back).setOnClickListener(this);
         view.findViewById(R.id.request_verification_txt).setOnClickListener(this);
         view.findViewById(R.id.privacy_policy_txt).setOnClickListener(this);
         view.findViewById(R.id.privacy_setting_txt).setOnClickListener(this);
@@ -46,18 +48,19 @@ public class Setting_F extends RootFragment implements View.OnClickListener {
         view.findViewById(R.id.terms_condition_txt).setOnClickListener(this::onClick);
 
 
-
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.Goback:
                 getActivity().onBackPressed();
                 break;
-
+            case R.id.rel_back:
+                getActivity().onBackPressed();
+                break;
             case R.id.request_verification_txt:
                 Open_request_verification();
                 break;
@@ -101,7 +104,7 @@ public class Setting_F extends RootFragment implements View.OnClickListener {
 
     private void Open_Privacy_Setting() {
         PrivacyPolicySetting_F policy_setting_f = new PrivacyPolicySetting_F();
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         policy_setting_f.setArguments(bundle);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
@@ -111,7 +114,7 @@ public class Setting_F extends RootFragment implements View.OnClickListener {
 
     private void OpenPushNotificationSetting() {
         Push_Notification_Setting_F push_setting_f = new Push_Notification_Setting_F();
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         push_setting_f.setArguments(bundle);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
@@ -120,7 +123,7 @@ public class Setting_F extends RootFragment implements View.OnClickListener {
     }
 
 
-    public void Open_request_verification(){
+    public void Open_request_verification() {
         Request_Varification_F request_varification_f = new Request_Varification_F();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
@@ -128,18 +131,17 @@ public class Setting_F extends RootFragment implements View.OnClickListener {
         transaction.replace(R.id.Setting_F, request_varification_f).commit();
     }
 
-    public void Open_web_url(String title,String url){
+    public void Open_web_url(String title, String url) {
         Webview_F webview_f = new Webview_F();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
-        Bundle bundle=new Bundle();
-        bundle.putString("url",url);
-        bundle.putString("title",title);
+        Bundle bundle = new Bundle();
+        bundle.putString("url", url);
+        bundle.putString("title", title);
         webview_f.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.replace(R.id.Setting_F, webview_f).commit();
     }
-
 
 
 }

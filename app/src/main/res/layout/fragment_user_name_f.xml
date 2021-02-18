@@ -26,20 +26,42 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
+<!--
                 <ImageButton
                     android:id="@+id/Goback"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                    android:layout_width="@dimen/_9sdp"
+                    android:layout_height="@dimen/_16sdp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/_15sdp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:src="@drawable/ic_new_back"
+                    android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp">
+
+                    <ImageButton
+                        android:id="@+id/Goback"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@color/transparent"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/username"
@@ -50,7 +72,8 @@
                     android:text="Sign up"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
@@ -77,14 +100,15 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/iv_back"
+                    android:fontFamily="@font/pop_medium"
                     android:text="Create username"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pop_regular"
                     android:justificationMode="inter_word"
                     android:paddingTop="15dp"
                     android:text="You can always change the username later"
@@ -113,22 +137,48 @@
                     android:background="@color/graycolor" />
 
 
-                <Button
-                    android:id="@+id/btn_sign_up"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/login_terms_condition_txt"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
+                <!--  <Button
+                      android:id="@+id/btn_sign_up"
+                      android:layout_width="match_parent"
+                      android:layout_height="50dp"
+                      android:layout_below="@+id/login_terms_condition_txt"
+                      android:layout_centerInParent="true"
+                      android:layout_gravity="center"
+                      android:layout_marginTop="40dp"
+                      android:clickable="false"
+                      android:enabled="false"
+                      android:gravity="center"
+                      android:text="Sign up"
+                      android:textColor="@color/white"
+                      android:textSize="14dp"
+                      android:theme="@style/Button_style" />-->
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_sign_up"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:background="@drawable/img_new_next_bg_disable1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:clickable="false"
                     android:enabled="false"
                     android:gravity="center"
-                    android:text="Sign up"
-                    android:textColor="@color/white"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_new_next"
+                    android:text="Next"
                     android:textSize="14dp"
                     android:theme="@style/Button_style" />
-
 
             </LinearLayout>
         </RelativeLayout>

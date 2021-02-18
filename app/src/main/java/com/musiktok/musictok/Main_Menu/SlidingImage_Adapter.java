@@ -17,7 +17,7 @@
 /**
  * This is a part of the Image Slider Helper.
  */
-package com.musiktok.musictok.Main_Menu;
+ package com.musiktok.musictok.Main_Menu;
 
 
  import android.app.Activity;
@@ -42,63 +42,60 @@ package com.musiktok.musictok.Main_Menu;
  /**
   * Created by grow solution on 14/05/2019.
   */
-public class SlidingImage_Adapter extends PagerAdapter {
-    private ArrayList<WelComeImageModel> helpImageModelArrayList;
-    private String[] textarray;
-    private LayoutInflater inflater;
-    private Context context;
+ public class SlidingImage_Adapter extends PagerAdapter {
+     private ArrayList<WelComeImageModel> helpImageModelArrayList;
+     private String[] nextbuttonList;
+     private LayoutInflater inflater;
+     private Context context;
 //    private RelativeLayout btnback;
 
 
-    public SlidingImage_Adapter(Context context, ArrayList<WelComeImageModel> helpImageModelArrayList, String[] textarray) {
-        this.context = context;
-        this.helpImageModelArrayList = helpImageModelArrayList;
-        this.textarray = textarray;
-        inflater = LayoutInflater.from(context);
-    }
+     public SlidingImage_Adapter(Context context, ArrayList<WelComeImageModel> helpImageModelArrayList, String[] textarray,
+                                 String[] nextbuttonList) {
+         this.context = context;
+         this.helpImageModelArrayList = helpImageModelArrayList;
+         this.nextbuttonList = nextbuttonList;
+         inflater = LayoutInflater.from(context);
+     }
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View) object);
-    }
+     @Override
+     public void destroyItem(ViewGroup container, int position, Object object) {
+         container.removeView((View) object);
+     }
 
-    @Override
-    public int getCount() {
-        return helpImageModelArrayList.size();
-    }
+     @Override
+     public int getCount() {
+         return helpImageModelArrayList.size();
+     }
 
-    @Override
-    public Object instantiateItem(ViewGroup view, int position) {
-        View imageLayout = inflater.inflate(R.layout.item_help_layout, view, false);
+     @Override
+     public Object instantiateItem(ViewGroup view, int position) {
+         View imageLayout = inflater.inflate(R.layout.item_help_layout, view, false);
 
-        assert imageLayout != null;
-        final ImageView imageView = imageLayout
-                .findViewById(R.id.image);
+         assert imageLayout != null;
+         final ImageView imageView = imageLayout
+                 .findViewById(R.id.image);
 //        TextView text1 = imageLayout.findViewById(R.id.text1);
-        TextView title = imageLayout.findViewById(R.id.title);
-        TextView subTitle = imageLayout.findViewById(R.id.subTitle);
-        RelativeLayout btnskip = imageLayout.findViewById(R.id.btnskip);
-        RelativeLayout btncancel = imageLayout.findViewById(R.id.btncancel);
-        btnskip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                ((Activity) context).finish();
-                Intent intent = new Intent(context, MainMenuActivity.class);
-                /*if (Splash_A.this.getIntent().getExtras() != null) {
-                    intent.putExtras(context.getIntent().getExtras());
-                    Splash_A.this.setIntent(null);
-                }*/
-                context.startActivity(intent);
-//                context.overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-//                context.finish();
-            }
-        });
-        btncancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Activity) context).finish();
-            }
-        });
+         TextView title = imageLayout.findViewById(R.id.title);
+         TextView subTitle = imageLayout.findViewById(R.id.subTitle);
+         RelativeLayout btnskip = imageLayout.findViewById(R.id.btnskip);
+         RelativeLayout btncancel = imageLayout.findViewById(R.id.btncancel);
+         TextView nextbtn_click = imageLayout.findViewById(R.id.nextbtn_click);
+         btnskip.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(context, MainMenuActivity.class);
+                 context.startActivity(intent);
+                 ((Activity) context).finish();
+             }
+         });
+         btncancel.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(context, MainMenuActivity.class);
+                 context.startActivity(intent);
+             }
+         });
         /*btnback = imageLayout.findViewById(R.id.btnback);
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,29 +103,30 @@ public class SlidingImage_Adapter extends PagerAdapter {
                 ((Activity) context).finish();
             }
         });*/
-        Glide.with(context).load(helpImageModelArrayList.get(position).getImage_drawable()).into(imageView);
-        title.setText(helpImageModelArrayList.get(position).getTitle());
-        subTitle.setText(helpImageModelArrayList.get(position).getSubTitle());
+         Glide.with(context).load(helpImageModelArrayList.get(position).getImage_drawable()).into(imageView);
+         title.setText(helpImageModelArrayList.get(position).getTitle());
+         subTitle.setText(helpImageModelArrayList.get(position).getSubTitle());
+         nextbtn_click.setText(helpImageModelArrayList.get(position).getNextTitle());
 //        text1.setText(this.textarray[position]);
 
-        view.addView(imageLayout, 0);
+         view.addView(imageLayout, 0);
 
-        return imageLayout;
-    }
+         return imageLayout;
+     }
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view.equals(object);
-    }
+     @Override
+     public boolean isViewFromObject(View view, Object object) {
+         return view.equals(object);
+     }
 
-    @Override
-    public void restoreState(Parcelable state, ClassLoader loader) {
-    }
+     @Override
+     public void restoreState(Parcelable state, ClassLoader loader) {
+     }
 
-    @Override
-    public Parcelable saveState() {
-        return null;
-    }
+     @Override
+     public Parcelable saveState() {
+         return null;
+     }
 
 
-}
+ }

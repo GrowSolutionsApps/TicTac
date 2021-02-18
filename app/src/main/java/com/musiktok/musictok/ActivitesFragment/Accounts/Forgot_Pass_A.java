@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +32,15 @@ import org.json.JSONObject;
 public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickListener {
     ViewFlipper viewFlipper;
     ImageView go_back, go_back2, go_back3;
+    RelativeLayout rel_back1, rel_back3;
     EditText recover_email, ed_new_pass, ed_confirm_pass;
-    Button btn_next_email, confirm_otp, change_pass;
+    Button confirm_otp, change_pass;
+    LinearLayout btn_next_email;
     String Code, otp, user_id, user_email;
     RelativeLayout rl1;
-    TextView tv1,edit_num,resend_code;
+    TextView tv1, edit_num, resend_code;
     PinView et_code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +49,12 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
         go_back = findViewById(R.id.Goback1);
         go_back2 = findViewById(R.id.Goback2);
         go_back3 = findViewById(R.id.Goback3);
+        rel_back3 = findViewById(R.id.rel_back3);
+        rel_back1 = findViewById(R.id.rel_back1);
         confirm_otp = findViewById(R.id.confirm_otp);
         ed_new_pass = findViewById(R.id.ed_new_pass);
-        rl1 =   findViewById(R.id.rl1_id);
-        tv1 =   findViewById(R.id.tv1_id);
+        rl1 = findViewById(R.id.rl1_id);
+        tv1 = findViewById(R.id.tv1_id);
         recover_email = findViewById(R.id.recover_email);
         btn_next_email = findViewById(R.id.btn_next);
         change_pass = findViewById(R.id.change_password_btn);
@@ -58,6 +64,8 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
         go_back.setOnClickListener(this);
         go_back2.setOnClickListener(this);
         go_back3.setOnClickListener(this);
+        rel_back3.setOnClickListener(this);
+        rel_back1.setOnClickListener(this);
         edit_num = findViewById(R.id.edit_email);
 
 
@@ -77,12 +85,15 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
                 String txtName = recover_email.getText().toString();
                 if (txtName.length() > 0) {
                     btn_next_email.setEnabled(true);
+                    btn_next_email.setBackground(getResources().getDrawable(R.drawable.img_new_next_bg));
                     btn_next_email.setClickable(true);
                 } else {
                     btn_next_email.setEnabled(false);
+                    btn_next_email.setBackground(getResources().getDrawable(R.drawable.img_new_next_bg_disable));
                     btn_next_email.setClickable(false);
                 }
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -108,12 +119,12 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
                     confirm_otp.setClickable(false);
                 }
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
             }
         });
-
 
 
         ed_new_pass.addTextChangedListener(new TextWatcher() {
@@ -133,6 +144,7 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
                     change_pass.setClickable(false);
                 }
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -142,15 +154,13 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-
-    public void METHOD_oneminutetimer(){
+    public void METHOD_oneminutetimer() {
         rl1.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(60000,1000){
+        new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long l) {
-                tv1.setText("Resend code 00:"+ l/1000);
+                tv1.setText("Resend code 00:" + l / 1000);
             }
 
             @Override
@@ -165,7 +175,7 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == go_back) {
-           onBackPressed();
+            onBackPressed();
         }
         if (v == go_back2) {
             viewFlipper.showPrevious();
@@ -173,6 +183,13 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
         if (v == go_back3) {
             viewFlipper.showPrevious();
         }
+        if (v == rel_back3) {
+            viewFlipper.showPrevious();
+        }
+        if (v == rel_back1) {
+            viewFlipper.showPrevious();
+        }
+
         if (v == btn_next_email) {
             if (validateEmail()) {
                 Functions.Show_loader(this, false, false);
@@ -186,7 +203,7 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
                 Functions.Show_loader(this, false, false);
                 checkOtp(otp, user_email);
             } else {
-                Functions.show_toast(this , "Code is Invalid");
+                Functions.show_toast(this, "Code is Invalid");
             }
         }
         if (v == change_pass) {
@@ -196,7 +213,7 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        if(v == resend_code) {
+        if (v == resend_code) {
             checkOtp(otp, user_email);
             METHOD_oneminutetimer();
         }
@@ -218,16 +235,16 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
             public void Responce(String resp) {
                 Functions.cancel_loader();
                 try {
-                    JSONObject response=new JSONObject(resp);
-                    String code=response.optString("code");
-                    JSONArray msg=response.optJSONArray("msg");
-                    if(code.equals("200")) {
+                    JSONObject response = new JSONObject(resp);
+                    String code = response.optString("code");
+                    JSONArray msg = response.optJSONArray("msg");
+                    if (code.equals("200")) {
                         Functions.cancel_loader();
                         startActivity(new Intent(Forgot_Pass_A.this, Login_A.class));
                         finish();
-                    }else {
-                        String msg_txt =  response.getString("msg");
-                        Functions.show_toast(Forgot_Pass_A.this,msg_txt);
+                    } else {
+                        String msg_txt = response.getString("msg");
+                        Functions.show_toast(Forgot_Pass_A.this, msg_txt);
                     }
 
                 } catch (JSONException e) {
@@ -254,10 +271,10 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
             public void Responce(String resp) {
                 Functions.cancel_loader();
                 try {
-                    JSONObject response=new JSONObject(resp);
-                    String code=response.optString("code");
+                    JSONObject response = new JSONObject(resp);
+                    String code = response.optString("code");
 
-                    if(code.equals("200")) {
+                    if (code.equals("200")) {
                         JSONObject json = new JSONObject(response.toString());
                         JSONObject msgObj = json.getJSONObject("msg");
                         JSONObject json1 = new JSONObject(msgObj.toString());
@@ -265,9 +282,9 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
                         user_id = user_obj.optString("id");
                         viewFlipper.showNext();
                         Functions.cancel_loader();
-                    }else {
-                        String msg_txt =  response.getString("msg");
-                        Toast.makeText(Forgot_Pass_A.this, ""+msg_txt, Toast.LENGTH_SHORT).show();
+                    } else {
+                        String msg_txt = response.getString("msg");
+                        Toast.makeText(Forgot_Pass_A.this, "" + msg_txt, Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -293,17 +310,17 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
                 Functions.cancel_loader();
 
                 try {
-                    JSONObject response=new JSONObject(resp);
-                    String code=response.optString("code");
-                    JSONArray msg=response.optJSONArray("msg");
-                    if(code.equals("200")) {
+                    JSONObject response = new JSONObject(resp);
+                    String code = response.optString("code");
+                    JSONArray msg = response.optJSONArray("msg");
+                    if (code.equals("200")) {
                         Functions.cancel_loader();
                         viewFlipper.showNext();
-                        edit_num.setText("Your code was emailed to "+recover_email.getText().toString());
+                        edit_num.setText("Your code was emailed to " + recover_email.getText().toString());
                         METHOD_oneminutetimer();
-                    }else {
-                        String msg_txt =  response.getString("msg");
-                        Toast.makeText(Forgot_Pass_A.this, ""+msg_txt, Toast.LENGTH_SHORT).show();
+                    } else {
+                        String msg_txt = response.getString("msg");
+                        Toast.makeText(Forgot_Pass_A.this, "" + msg_txt, Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -313,13 +330,14 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
         });
 
     }
+
     public boolean validateEmail() {
         String email = recover_email.getText().toString().trim();
         if (email.isEmpty()) {
-            Functions.show_toast(this ,"Please enter valid email");
+            Functions.show_toast(this, "Please enter valid email");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Functions.show_toast(this ,"Please enter valid email");
+            Functions.show_toast(this, "Please enter valid email");
             return false;
         } else {
 
@@ -341,12 +359,13 @@ public class Forgot_Pass_A extends AppCompatActivity implements View.OnClickList
     public boolean validateNewPassword() {
         String newpass = ed_new_pass.getText().toString();
         if (newpass.isEmpty()) {
-            Functions.show_toast(this , "Please enter valid new password");
+            Functions.show_toast(this, "Please enter valid new password");
             return false;
-        } if (newpass.length() <= 5 || newpass.length() >= 12) {
+        }
+        if (newpass.length() <= 5 || newpass.length() >= 12) {
             Functions.show_toast(this, "Please enter valid password");
             return false;
-        }   else {
+        } else {
 
             return true;
         }

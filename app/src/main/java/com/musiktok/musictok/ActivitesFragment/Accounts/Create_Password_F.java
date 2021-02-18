@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -22,9 +24,10 @@ import com.musiktok.musictok.SimpleClasses.Functions;
 public class Create_Password_F extends Fragment {
     View view;
     EditText password_edt;
-    Button btn_pass;
+    LinearLayout btn_pass;
     User_Model user_model;
-    String fromWhere,st_email;
+    String fromWhere, st_email;
+
     public Create_Password_F(String fromWhere) {
         this.fromWhere = fromWhere;
     }
@@ -64,6 +67,7 @@ public class Create_Password_F extends Fragment {
                     btn_pass.setClickable(false);
                 }
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -72,7 +76,7 @@ public class Create_Password_F extends Fragment {
         btn_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Check_Validation()){
+                if (Check_Validation()) {
                     Create_Username_F user_name_f = new Create_Username_F(fromWhere);
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     Bundle bundle = new Bundle();
@@ -88,13 +92,14 @@ public class Create_Password_F extends Fragment {
 
         return view;
     }
+
     // this will check the validations like none of the field can be the empty
-    public boolean Check_Validation(){
+    public boolean Check_Validation() {
 
-        String password=password_edt.getText().toString();
+        String password = password_edt.getText().toString();
 
-        if(TextUtils.isEmpty(password) || password.length()<2 ){
-            Functions.show_toast(getActivity(),"Please enter password");
+        if (TextUtils.isEmpty(password) || password.length() < 2) {
+            Functions.show_toast(getActivity(), "Please enter password");
             return false;
         }
 

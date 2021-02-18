@@ -28,26 +28,26 @@ public class Webview_F extends RootFragment {
 
     ProgressBar progress_bar;
     WebView webView;
-    String url="www.google.com";
+    String url = "www.google.com";
     String title;
     TextView title_txt;
+
     public Webview_F() {
         //constructer
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_webview, container, false);
-        context=getContext();
+        view = inflater.inflate(R.layout.fragment_webview, container, false);
+        context = getContext();
 
-        Bundle bundle=getArguments();
-        if(bundle!=null){
-            url=bundle.getString("url");
-            title=bundle.getString("title");
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            url = bundle.getString("url");
+            title = bundle.getString("title");
         }
 
 
@@ -57,16 +57,21 @@ public class Webview_F extends RootFragment {
                 getActivity().onBackPressed();
             }
         });
-
-        title_txt=view.findViewById(R.id.title_txt);
+        view.findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+        title_txt = view.findViewById(R.id.title_txt);
         title_txt.setText(title);
 
-        webView=view.findViewById(R.id.webview);
-        progress_bar=view.findViewById(R.id.progress_bar);
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView = view.findViewById(R.id.webview);
+        progress_bar = view.findViewById(R.id.progress_bar);
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int progress) {
-                if(progress>=80){
+                if (progress >= 80) {
                     progress_bar.setVisibility(View.GONE);
                 }
             }

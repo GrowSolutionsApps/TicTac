@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -64,20 +65,20 @@ public class Following_F extends Fragment {
 
     ProgressBar pbar;
 
-    String following_or_fan="Followers";
+    String following_or_fan = "Followers";
 
     TextView title_txt;
+
     public Following_F() {
         // Required empty public constructor
     }
 
 
-
-
     Fragment_Callback fragment_callback;
+
     @SuppressLint("ValidFragment")
     public Following_F(Fragment_Callback fragment_callback) {
-        this.fragment_callback=fragment_callback;
+        this.fragment_callback = fragment_callback;
     }
 
 
@@ -85,19 +86,19 @@ public class Following_F extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_following, container, false);
-        context=getContext();
+        view = inflater.inflate(R.layout.fragment_following, container, false);
+        context = getContext();
 
-        Bundle bundle=getArguments();
-        if(bundle!=null){
-             user_id=bundle.getString("id");
-             following_or_fan=bundle.getString("from_where");
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            user_id = bundle.getString("id");
+            following_or_fan = bundle.getString("from_where");
         }
 
 
-        title_txt=view.findViewById(R.id.title_txt);
+        title_txt = view.findViewById(R.id.title_txt);
 
-        datalist=new ArrayList<>();
+        datalist = new ArrayList<>();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recylerview);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -105,17 +106,16 @@ public class Following_F extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        adapter=new Following_Adapter(context, following_or_fan,datalist, new Following_Adapter.OnItemClickListener() {
+        adapter = new Following_Adapter(context, following_or_fan, datalist, new Following_Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int postion, Following_Get_Set item) {
 
-                switch (view.getId()){
+                switch (view.getId()) {
                     case R.id.action_txt:
-                        if(Variables.sharedPreferences.getBoolean(Variables.islogin,false)) {
-                        if(!item.fb_id.equals(Variables.sharedPreferences.getString(Variables.u_id,"")))
-                        Follow_unFollow_User(item,postion);
-                        }
-                        else {
+                        if (Variables.sharedPreferences.getBoolean(Variables.islogin, false)) {
+                            if (!item.fb_id.equals(Variables.sharedPreferences.getString(Variables.u_id, "")))
+                                Follow_unFollow_User(item, postion);
+                        } else {
 
                             Intent intent = new Intent(getActivity(), Login_A.class);
                             startActivity(intent);
@@ -136,9 +136,8 @@ public class Following_F extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-        no_data_layout=view.findViewById(R.id.no_data_layout);
-        pbar=view.findViewById(R.id.pbar);
-
+        no_data_layout = view.findViewById(R.id.no_data_layout);
+        pbar = view.findViewById(R.id.pbar);
 
 
         view.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
@@ -147,14 +146,25 @@ public class Following_F extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+        view.findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        view.findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
 
-
-        if(following_or_fan.equals("following")){
-        Call_Api_For_get_Allfollowing();
-        title_txt.setText("Following");
-        }
-        else {
+        if (following_or_fan.equals("following")) {
+            Call_Api_For_get_Allfollowing();
+            title_txt.setText("Following");
+        } else {
             Call_Api_For_get_Allfan();
             title_txt.setText("Followers");
         }
@@ -169,12 +179,12 @@ public class Following_F extends Fragment {
         JSONObject parameters = new JSONObject();
         try {
 
-            if(Variables.sharedPreferences.getString(Variables.u_id,"0").equals(user_id))
-                parameters.put("user_id",Variables.sharedPreferences.getString(Variables.u_id,""));
+            if (Variables.sharedPreferences.getString(Variables.u_id, "0").equals(user_id))
+                parameters.put("user_id", Variables.sharedPreferences.getString(Variables.u_id, ""));
 
             else {
                 parameters.put("user_id", Variables.sharedPreferences.getString(Variables.u_id, ""));
-                parameters.put("other_user_id",user_id);
+                parameters.put("other_user_id", user_id);
 
             }
         } catch (JSONException e) {
@@ -192,36 +202,35 @@ public class Following_F extends Fragment {
 
     }
 
-    public void Parse_following_data(String responce){
+    public void Parse_following_data(String responce) {
 
         datalist.clear();
 
         try {
-            JSONObject jsonObject=new JSONObject(responce);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
-                JSONArray msgArray=jsonObject.getJSONArray("msg");
-                for (int i=0;i<msgArray.length();i++) {
+            JSONObject jsonObject = new JSONObject(responce);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
+                JSONArray msgArray = jsonObject.getJSONArray("msg");
+                for (int i = 0; i < msgArray.length(); i++) {
 
                     JSONObject object = msgArray.optJSONObject(i);
-                    JSONObject FollowingList=object.optJSONObject("FollowingList");
+                    JSONObject FollowingList = object.optJSONObject("FollowingList");
 
 
-                    Following_Get_Set item=new Following_Get_Set();
-                    item.fb_id=FollowingList.optString("id");
-                    item.first_name=FollowingList.optString("first_name");
-                    item.last_name=FollowingList.optString("last_name");
-                    item.bio=FollowingList.optString("bio");
-                    item.username=FollowingList.optString("username");
+                    Following_Get_Set item = new Following_Get_Set();
+                    item.fb_id = FollowingList.optString("id");
+                    item.first_name = FollowingList.optString("first_name");
+                    item.last_name = FollowingList.optString("last_name");
+                    item.bio = FollowingList.optString("bio");
+                    item.username = FollowingList.optString("username");
 
-                     item.profile_pic=FollowingList.optString("profile_pic","");
-                    if(!item.profile_pic.contains(Variables.http)) {
+                    item.profile_pic = FollowingList.optString("profile_pic", "");
+                    if (!item.profile_pic.contains(Variables.http)) {
                         item.profile_pic = ApiLinks.BASE_URL + item.profile_pic;
                     }
 
 
-                    item.follow_status_button=FollowingList.optString("button");
-
+                    item.follow_status_button = FollowingList.optString("button");
 
 
                     datalist.add(item);
@@ -230,14 +239,14 @@ public class Following_F extends Fragment {
 
                 adapter.notifyDataSetChanged();
 
-                if(datalist.isEmpty()){
+                if (datalist.isEmpty()) {
                     no_data_layout.setVisibility(View.VISIBLE);
-                }else
+                } else
                     no_data_layout.setVisibility(View.GONE);
 
-            }else {
+            } else {
                 no_data_layout.setVisibility(View.VISIBLE);
-                }
+            }
 
             pbar.setVisibility(View.GONE);
 
@@ -253,15 +262,14 @@ public class Following_F extends Fragment {
     private void Call_Api_For_get_Allfan() {
 
         JSONObject parameters = new JSONObject();
-        try
-        {
-            if(Variables.sharedPreferences.getString(Variables.u_id,"0").equals(user_id))
-                parameters.put("user_id",Variables.sharedPreferences.getString(Variables.u_id,""));
+        try {
+            if (Variables.sharedPreferences.getString(Variables.u_id, "0").equals(user_id))
+                parameters.put("user_id", Variables.sharedPreferences.getString(Variables.u_id, ""));
 
             else {
 
                 parameters.put("user_id", Variables.sharedPreferences.getString(Variables.u_id, ""));
-                parameters.put("other_user_id",user_id);
+                parameters.put("other_user_id", user_id);
             }
 
         } catch (JSONException e) {
@@ -278,34 +286,34 @@ public class Following_F extends Fragment {
 
     }
 
-    public void Parse_fans_data(String responce){
+    public void Parse_fans_data(String responce) {
 
         datalist.clear();
 
         try {
-            JSONObject jsonObject=new JSONObject(responce);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
-                JSONArray msgArray=jsonObject.getJSONArray("msg");
-                for (int i=0;i<msgArray.length();i++) {
+            JSONObject jsonObject = new JSONObject(responce);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
+                JSONArray msgArray = jsonObject.getJSONArray("msg");
+                for (int i = 0; i < msgArray.length(); i++) {
                     JSONObject object = msgArray.optJSONObject(i);
-                    JSONObject FollowingList=object.optJSONObject("FollowerList");
+                    JSONObject FollowingList = object.optJSONObject("FollowerList");
 
 
-                    Following_Get_Set item=new Following_Get_Set();
-                    item.fb_id=FollowingList.optString("id");
-                    item.first_name=FollowingList.optString("first_name");
-                    item.last_name=FollowingList.optString("last_name");
-                    item.bio=FollowingList.optString("bio");
-                    item.username=FollowingList.optString("username");
+                    Following_Get_Set item = new Following_Get_Set();
+                    item.fb_id = FollowingList.optString("id");
+                    item.first_name = FollowingList.optString("first_name");
+                    item.last_name = FollowingList.optString("last_name");
+                    item.bio = FollowingList.optString("bio");
+                    item.username = FollowingList.optString("username");
 
-                    item.profile_pic=FollowingList.optString("profile_pic","");
-                    if(!item.profile_pic.contains(Variables.http)) {
+                    item.profile_pic = FollowingList.optString("profile_pic", "");
+                    if (!item.profile_pic.contains(Variables.http)) {
                         item.profile_pic = ApiLinks.BASE_URL + item.profile_pic;
                     }
 
 
-                    item.follow_status_button=FollowingList.optString("button");
+                    item.follow_status_button = FollowingList.optString("button");
 
                     datalist.add(item);
                     adapter.notifyItemInserted(i);
@@ -314,15 +322,14 @@ public class Following_F extends Fragment {
                 adapter.notifyDataSetChanged();
 
 
-                if(datalist.isEmpty()){
+                if (datalist.isEmpty()) {
                     no_data_layout.setVisibility(View.VISIBLE);
-                }else
+                } else
                     no_data_layout.setVisibility(View.GONE);
 
-            }
-            else {
+            } else {
                 no_data_layout.setVisibility(View.VISIBLE);
-              }
+            }
 
             pbar.setVisibility(View.GONE);
 
@@ -334,31 +341,29 @@ public class Following_F extends Fragment {
     }
 
 
-
     // this will open the profile of user which have uploaded the currenlty running video
     private void OpenProfile(final Following_Get_Set item) {
         Profile_F profile_f = new Profile_F();
 
-        View view=getActivity().findViewById(R.id.MainMenuFragment);
-        if(view!=null){
+        View view = getActivity().findViewById(R.id.MainMenuFragment);
+        if (view != null) {
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
             Bundle args = new Bundle();
-            args.putString("user_id",item.fb_id);
-            args.putString("user_name",item.username);
-            args.putString("user_pic",item.profile_pic);
+            args.putString("user_id", item.fb_id);
+            args.putString("user_name", item.username);
+            args.putString("user_pic", item.profile_pic);
             profile_f.setArguments(args);
             transaction.addToBackStack(null);
             transaction.replace(R.id.MainMenuFragment, profile_f).commit();
-        }
-        else {
+        } else {
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
             Bundle args = new Bundle();
-            args.putString("user_id",item.fb_id);
-            args.putString("user_name",item.first_name+" "+item.last_name);
-            args.putString("user_pic",item.profile_pic);
+            args.putString("user_id", item.fb_id);
+            args.putString("user_name", item.first_name + " " + item.last_name);
+            args.putString("user_pic", item.profile_pic);
             profile_f.setArguments(args);
             transaction.addToBackStack(null);
             transaction.replace(R.id.following_layout, profile_f).commit();
@@ -368,10 +373,10 @@ public class Following_F extends Fragment {
     }
 
 
-    public void Follow_unFollow_User(final Following_Get_Set item, final int position){
+    public void Follow_unFollow_User(final Following_Get_Set item, final int position) {
 
         Functions.Call_Api_For_Follow_or_unFollow(getActivity(),
-                Variables.sharedPreferences.getString(Variables.u_id,""),
+                Variables.sharedPreferences.getString(Variables.u_id, ""),
                 item.fb_id,
                 new API_CallBack() {
                     @Override
@@ -384,10 +389,9 @@ public class Following_F extends Fragment {
                     public void OnSuccess(String responce) {
 
 
-                        if(following_or_fan.equals("following")){
+                        if (following_or_fan.equals("following")) {
                             Call_Api_For_get_Allfollowing();
-                        }
-                        else {
+                        } else {
                             Call_Api_For_get_Allfan();
                         }
 
@@ -408,7 +412,7 @@ public class Following_F extends Fragment {
     @Override
     public void onDetach() {
 
-        if(fragment_callback!=null)
+        if (fragment_callback != null)
             fragment_callback.Responce(new Bundle());
 
         super.onDetach();

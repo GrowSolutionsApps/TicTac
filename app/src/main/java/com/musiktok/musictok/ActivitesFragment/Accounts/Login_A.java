@@ -78,7 +78,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class Login_A extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
 
 
     FirebaseAuth mAuth;
@@ -120,12 +120,12 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
 
         mAuth = FirebaseAuth.getInstance();
-        firebaseUser=mAuth.getCurrentUser();
+        firebaseUser = mAuth.getCurrentUser();
 
         // if the user is already login trought facebook then we will logout the user automatically
         LoginManager.getInstance().logOut();
 
-        sharedPreferences=getSharedPreferences(Variables.pref_name,MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Variables.pref_name, MODE_PRIVATE);
 
         findViewById(R.id.facebook_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +135,21 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
         });
 
         findViewById(R.id.email_login_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+  /*              Email_Phone_F emailPhoneF = new Email_Phone_F("login");
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user_model", user_model);
+                emailPhoneF.setArguments(bundle);
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.login_f, emailPhoneF).commit();*/
+                open_dob_fragment("signup");
+            }
+        });
+
+        findViewById(R.id.signUp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Email_Phone_F emailPhoneF = new Email_Phone_F("login");
@@ -148,14 +163,6 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
             }
         });
 
-        findViewById(R.id.signUp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                open_dob_fragment("signup");
-            }
-        });
-
-
 
         findViewById(R.id.google_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +172,6 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
         });
 
 
-
         findViewById(R.id.Goback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,13 +179,11 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
             }
         });
 
-         top_view=findViewById(R.id.top_view);
+        top_view = findViewById(R.id.top_view);
 
 
-
-        login_title_txt=findViewById(R.id.login_title_txt);
-        login_title_txt.setText("You need a "+getString(R.string.app_name)+"\naccount to Continue");
-
+        login_title_txt = findViewById(R.id.login_title_txt);
+//        login_title_txt.setText("You need a "+getString(R.string.app_name)+"\naccount to Continue");
 
 
         SpannableString ss = new SpannableString("By signing up, you confirm that you agree to our \n Terms of Use and have read and understood \n our Privacy Policy.");
@@ -188,6 +192,7 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
             public void onClick(View textView) {
                 Open_Privacy_policy();
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
@@ -208,7 +213,7 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
     }
 
 
-    public void Open_Privacy_policy(){
+    public void Open_Privacy_policy() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(ApiLinks.privacy_policy));
         startActivity(browserIntent);
     }
@@ -227,19 +232,19 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
     @Override
     public void onBackPressed() {
-            int count = this.getSupportFragmentManager().getBackStackEntryCount();
-            if (count == 0) {
-                if (mBackPressed + 2000 > System.currentTimeMillis()) {
-                    super.onBackPressed();
-                    return;
-                } else {
-                    top_view.setVisibility(View.GONE);
-                    finish();
-                    overridePendingTransition(R.anim.in_from_top, R.anim.out_from_bottom);
-                }
-            } else {
+        int count = this.getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 0) {
+            if (mBackPressed + 2000 > System.currentTimeMillis()) {
                 super.onBackPressed();
+                return;
+            } else {
+                top_view.setVisibility(View.GONE);
+                finish();
+                overridePendingTransition(R.anim.in_from_top, R.anim.out_from_bottom);
             }
+        } else {
+            super.onBackPressed();
+        }
     }
 
 
@@ -248,32 +253,32 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
 
     //facebook implimentation
-    public void Loginwith_FB(){
+    public void Loginwith_FB() {
 
         LoginManager.getInstance()
                 .logInWithReadPermissions(Login_A.this,
-                        Arrays.asList("public_profile","email"));
+                        Arrays.asList("public_profile", "email"));
 
         // initialze the facebook sdk and request to facebook for login
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>()  {
+        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
-                Log.d("resp_token",loginResult.getAccessToken()+"");
+                Log.d("resp_token", loginResult.getAccessToken() + "");
             }
 
             @Override
             public void onCancel() {
                 // App code
-                Functions.show_toast(Login_A.this ,"Login Cancel");
+                Functions.show_toast(Login_A.this, "Login Cancel");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("resp",""+error.toString());
-                Functions.show_toast(Login_A.this ,"Login Error"+error.toString());
+                Log.d("resp fb error--", "" + error.toString());
+                Functions.show_toast(Login_A.this, "Login Error" + error.toString());
             }
 
         });
@@ -285,25 +290,25 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
         // if user is login then this method will call and
         // facebook will return us a token which will user for get the info of user
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        Log.d("resp_token",token.getToken()+"");
+        Log.d("resp_token", token.getToken() + "");
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Functions.Show_loader(Login_A.this,false,false);
-                             final String id = Profile.getCurrentProfile().getId();
+                            Functions.Show_loader(Login_A.this, false, false);
+                            final String id = Profile.getCurrentProfile().getId();
                             GraphRequest request = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
                                 @Override
                                 public void onCompleted(JSONObject user, GraphResponse graphResponse) {
 
                                     Functions.cancel_loader();
-                                    Log.d("resp",user.toString());
+                                    Log.d("resp", user.toString());
                                     //after get the info of user we will pass to function which will store the info in our server
 
-                                    String fname=""+user.optString("first_name");
-                                    String lname=""+user.optString("last_name");
-                                    String email= ""+user.optString("email");
+                                    String fname = "" + user.optString("first_name");
+                                    String lname = "" + user.optString("last_name");
+                                    String email = "" + user.optString("email");
                                     String auth_token = token.getToken();
 
 
@@ -317,9 +322,7 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
                                     user_model.auth_tokon = auth_token;
 
 
-
-
-                                    call_api_for_login(""+id,
+                                    call_api_for_login("" + id,
                                             "facebook",
                                             auth_token);
 
@@ -344,21 +347,27 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
         JSONObject parameters = new JSONObject();
         try {
-
             parameters.put("social_id", social_id);
-            parameters.put("social",""+social);
-            parameters.put("auth_token", ""+authtoken);
+            parameters.put("social", "" + social);
+            parameters.put("auth_token", "" + authtoken);
 
         } catch (JSONException e) {
+            Log.w("msg", "google Login call_api_for_login errror " + e.toString());
+
             e.printStackTrace();
         }
 
-        Functions.Show_loader(this,false,false);
+        Log.w("msg", "google Login parameters  " + parameters);
+        Log.w("msg", "google Login ApiLinks.registerUser  " + ApiLinks.registerUser);
+
+        Functions.Show_loader(this, false, false);
         ApiRequest.Call_Api(this, ApiLinks.registerUser, parameters, new Callback() {
             @Override
             public void Responce(String resp) {
+                Log.w("msg", "google resp " + resp);
+
                 Functions.cancel_loader();
-                parse_login_data(resp,authtoken);
+                parse_login_data(resp, authtoken);
 
             }
         });
@@ -366,44 +375,45 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
-    public void parse_login_data(String loginData,String authtoken){
+    public void parse_login_data(String loginData, String authtoken) {
+        Log.w("msg", "google string " + loginData);
+        Log.w("msg", "google authtoken " + authtoken);
         try {
-            JSONObject jsonObject=new JSONObject(loginData);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
+            JSONObject jsonObject = new JSONObject(loginData);
+            Log.w("msg", "google jsonObject " + jsonObject.toString());
 
-                JSONObject jsonArray=jsonObject.getJSONObject("msg");
+            String code = jsonObject.optString("code");
+            Log.w("msg", "google jsonObject  code" + code);
+
+            if (code.equals("200")) {
+                JSONObject jsonArray = jsonObject.getJSONObject("msg");
                 JSONObject userdata = jsonArray.getJSONObject("User");
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString(Variables.u_id,userdata.optString("id"));
-                editor.putString(Variables.f_name,userdata.optString("first_name"));
-                editor.putString(Variables.l_name,userdata.optString("last_name"));
-                editor.putString(Variables.u_name,userdata.optString("username"));
-                editor.putString(Variables.gender,userdata.optString("gender"));
-                editor.putString(Variables.u_pic,userdata.optString("profile_pic"));
-                editor.putString(Variables.auth_token,authtoken);
-                editor.putBoolean(Variables.islogin,true);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Variables.u_id, userdata.optString("id"));
+                editor.putString(Variables.f_name, userdata.optString("first_name"));
+                editor.putString(Variables.l_name, userdata.optString("last_name"));
+                editor.putString(Variables.u_name, userdata.optString("username"));
+                editor.putString(Variables.gender, userdata.optString("gender"));
+                editor.putString(Variables.u_pic, userdata.optString("profile_pic"));
+                editor.putString(Variables.auth_token, authtoken);
+                editor.putBoolean(Variables.islogin, true);
                 editor.commit();
-               Variables.user_id=Functions.getSharedPreference(this).getString(Variables.u_id,"");
-
+                Variables.user_id = Functions.getSharedPreference(this).getString(Variables.u_id, "");
                 sendBroadcast(new Intent("newVideo"));
 
-
-                Variables.Reload_my_videos=true;
-                Variables.Reload_my_videos_inner=true;
-                Variables.Reload_my_likes_inner=true;
-                Variables.Reload_my_notification=true;
+                Variables.Reload_my_videos = true;
+                Variables.Reload_my_videos_inner = true;
+                Variables.Reload_my_likes_inner = true;
+                Variables.Reload_my_notification = true;
                 top_view.setVisibility(View.GONE);
 
 
                 finish();
                 startActivity(new Intent(this, MainMenuActivity.class));
 
-            }
-            else if(code.equals("201") && !jsonObject.optString("msg").contains("have been blocked")){
+            } else if (code.equals("201") && !jsonObject.optString("msg").contains("have been blocked")) {
                 open_dob_fragment("social");
-            }
-           else{
+            } else {
                 Toast.makeText(this, jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
             }
 
@@ -419,7 +429,7 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
         Bundle bundle = new Bundle();
         bundle.putSerializable("user_model", user_model);
-        bundle.putString("fromWhere",fromWhere);
+        bundle.putString("fromWhere", fromWhere);
         DOBF.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.replace(R.id.login_f, DOBF).commit();
@@ -428,26 +438,28 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Pass the activity result back to the Facebook SDK
-        if(requestCode==123){
+        if (requestCode == 123) {
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            Log.w("msg", "google Login stask " + task);
+
             handleSignInResult(task);
-        }
-        else if(mCallbackManager!=null)
+        } else if (mCallbackManager != null)
             mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
         else
             for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-                if(fragment instanceof Email_Phone_F) {
+                if (fragment instanceof Email_Phone_F) {
                     fragment.onActivityResult(requestCode, resultCode, data);
                 }
             }
     }
 
 
-
     //google Implimentation
     GoogleSignInClient mGoogleSignInClient;
-    public void Sign_in_with_gmail(){
+
+    public void Sign_in_with_gmail() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.google_web_client_id))
                 .requestEmail()
@@ -456,36 +468,31 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(Login_A.this);
 
         if (account != null) {
-
-            String id=account.getId();
-            String fname=""+account.getGivenName();
-            String lname=""+account.getFamilyName();
+            Log.w("msg", "google Login if");
+            String id = account.getId();
+            String fname = "" + account.getGivenName();
+            String lname = "" + account.getFamilyName();
             String email = account.getEmail();
-            String auth_tokon=account.getIdToken();
+            String auth_tokon = account.getIdToken();
+            Log.w("msg", "google Login fname " + fname);
+            Log.w("msg", "google Login email " + email);
 
             user_model = new User_Model();
             user_model.fname = fname;
             user_model.email = email;
             user_model.lname = lname;
             user_model.socail_id = id;
-            user_model.auth_tokon =auth_tokon;
-
-
+            user_model.auth_tokon = auth_tokon;
             user_model.socail_type = "google";
 
 
+            String auth_token = "" + account.getIdToken();
+            Log.w("msg", "google Login auth_token " + auth_token);
 
-            String auth_token = ""+account.getIdToken();
+            call_api_for_login("" + id, "google", auth_token);
 
-
-            Log.d(Variables.tag, "signInResult:auth_token===" + auth_token);
-           call_api_for_login(""+id,
-                    "google",
-                    auth_token);
-
-        }
-        else {
-
+        } else {
+            Log.w("msg", "google Login else");
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, 123);
 
@@ -496,16 +503,18 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
 
     //Relate to google login
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        Log.w("msg", "google Login  completedTask=" + completedTask);
+
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             if (account != null) {
-                String id=account.getId();
-                String fname=""+account.getGivenName();
-                String lname=""+account.getFamilyName();
-                String auth_token =  account.getIdToken();
+                String id = account.getId();
+                String fname = "" + account.getGivenName();
+                String lname = "" + account.getFamilyName();
+                String auth_token = account.getIdToken();
                 String email = account.getEmail();
+                Log.w("msg", "google Login  fname=" + fname);
 
-                Log.d(Variables.tag, "signInResult:auth_token =" + auth_token);
                 // if we do not get the picture of user then we will use default profile picture
 
 
@@ -519,26 +528,26 @@ public class Login_A extends AppCompatActivity implements GoogleApiClient.Connec
                 user_model.auth_tokon = account.getIdToken();
 
 
-                call_api_for_login(""+id,
+                call_api_for_login("" + id,
                         "google",
                         auth_token);
 
 
             }
         } catch (ApiException e) {
-            Log.d("TicTic_log", "signInResult:failed code=" + e.getStatusCode());
+            Log.w("msg", "google Login signInResult:failed code=" + e.getStatusCode());
+
         }
     }
 
 
-    public void printKeyHash()  {
+    public void printKeyHash() {
         try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName() , PackageManager.GET_SIGNATURES);
-            for(Signature signature:info.signatures)
-            {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
-                Log.i("keyhash" , Base64.encodeToString(md.digest(), Base64.DEFAULT));
+                Log.i("keyhash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

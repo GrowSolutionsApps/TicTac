@@ -1,23 +1,19 @@
 <resources>
-    <string name="app_name">TicTic</string>
+    <string name="app_name">Musiktok</string>
 
 
+    <!--    <string name="facebook_app_id">fb_id</string>-->
+    <!--    <string name="fb_login_protocol_scheme">fb(fb_id)</string>-->
 
-    
-    <string name="facebook_app_id">fb_id</string>
-    <string name="fb_login_protocol_scheme">fb(fb_id)</string>
-   
+    <string name="facebook_app_id">1058746651303836</string>
+    <string name="fb_login_protocol_scheme">fb1058746651303836</string>
 
 
-    
     <string name="google_web_client_id">153945693375-6rjj62kbkbkvf7aes9g1un29nasonjdd.apps.googleusercontent.com</string>
-<!--    <string name="google_web_client_id">google_auth_web_client_id</string>-->
+    <!--    <string name="google_web_client_id">google_auth_web_client_id</string>-->
 
 
-    
     <string name="gif_api_key">gif_api_key_here</string>
-     
-
 
 
     <string name="ad_app_id">ca-app-pub-3940256099942544~3347511713</string>
@@ -26,8 +22,8 @@
 
 
     <string name="request_verification">Request Verification</string>
-    <string name="apply_for_tic_tic_verification">Apply for Tic Tic Verification</string>
-    <string name="upper_body">A verified badge is check that appears next to an \ntic tic accounts name to indicate that the \naccount is the authentic presence of notable \npublic figure , celebrity, global brand or entity it \nrepresents.</string>
+    <string name="apply_for_tic_tic_verification">Apply for Musiktok Verification</string>
+    <string name="upper_body">A verified badge is check that appears next to an \nMusiktok accounts name to indicate that the \naccount is the authentic presence of notable \npublic figure , celebrity, global brand or entity it \nrepresents.</string>
     <string name="upper_body_below">Submitting a request for verification \ndoes not guarantee that your account will be verified</string>
     <string name="lower_body">We require a goverment-issued photo ID that shows \nyour name and date of birth(e.g driver\'s license.\npassport or national identification card) or official \nbusiness documents(tax filing, recent utility bill, article of \nincorporation) in order to review your request.</string>
 
@@ -70,5 +66,6 @@
     <string name="not_inbox">There is no inbox you have so far</string>
     <string name="no_notification">There is no notifications you have so far</string>
     <string name="no_search">There is no data so far.</string>
-    <string name="skip"><u>SKIP</u></string>
+    <string name="skip">SKIP</string>
+    <string name="signupText">By signing up, you confirm that you agree to our <u><b>Terms of \nUse</b></u> and have read and understood our <u><b>Privacy Policy</b></u>.             \nif you signup with SMS. SMS fee \nmay apply</string>
 </resources>

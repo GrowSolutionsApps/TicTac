@@ -50,6 +50,7 @@
                     android:id="@+id/username_txt"
                     android:textStyle="bold"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/pop_medium"
                     android:layout_marginLeft="10dp" />
 
 
@@ -61,6 +62,7 @@
                 android:maxLines="2"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/pop_regular"
                 android:layout_marginLeft="10dp"
                 />
 
@@ -70,6 +72,7 @@
                 android:id="@+id/follower_video_txt"
                 android:text="0 follower . 0 videos"
                 android:textSize="13dp"
+                android:fontFamily="@font/pop_light"
                 android:maxLines="2"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/black"

@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    tools:context=".ActivitesFragment.Chat.Audio.Play_Audio_F">
+    android:clickable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +51,7 @@
                     android:id="@+id/play_btn"
                     android:scaleType="fitXY"
                     android:tint="@color/white"
-                    android:src="@drawable/ic_play_icon"
+                    android:src="@drawable/ic_new_play"
                     android:background="@color/transparent"/>
 
                 <ImageButton

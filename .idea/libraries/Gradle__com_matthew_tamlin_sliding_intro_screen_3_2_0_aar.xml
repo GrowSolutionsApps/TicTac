@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.matthew-tamlin:sliding-intro-screen:3.2.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/081c8f57110265aafaa6083de85154a4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/081c8f57110265aafaa6083de85154a4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/081c8f57110265aafaa6083de85154a4/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.matthew-tamlin/sliding-intro-screen/3.2.0/54f74f64a2852c135a6b9cd583498c72e8803e1f/sliding-intro-screen-3.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

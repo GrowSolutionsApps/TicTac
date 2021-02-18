@@ -8,11 +8,14 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -40,7 +43,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Create_Username_F extends Fragment {
     View view;
     EditText username_edit;
-    Button sign_up_btn;
+    LinearLayout sign_up_btn;
     User_Model user_model;
     SharedPreferences sharedPreferences;
     String fromWhere;
@@ -113,11 +116,17 @@ public class Create_Username_F extends Fragment {
             parameters.put("username", "" + username_edit.getText().toString());
 
             if (fromWhere.equals("fromEmail")) {
+                Log.w("msg", "fbApp api fromEmail  " );
+
                 parameters.put("email", "" + user_model.email);
                 parameters.put("password", user_model.password);
             } else if (fromWhere.equals("fromPhone")) {
+                Log.w("msg", "fbApp api fromPhone  " );
+
                 parameters.put("phone", "" + user_model.phone_no);
             } else if (fromWhere.equals("social")) {
+                Log.w("msg", "fbApp api social  " );
+
                 parameters.put("email", "" + user_model.email);
                 parameters.put("social_id", "" + user_model.socail_id);
                 parameters.put("social", "" + user_model.socail_type);
@@ -125,9 +134,12 @@ public class Create_Username_F extends Fragment {
                 parameters.put("last_name", "" + user_model.lname);
                 parameters.put("auth_token", "" + user_model.auth_tokon);
                 parameters.put("device_token", Variables.device);
+                Log.w("msg", "fbApp api device_token  " + Variables.device );
+
             }
 
         } catch (JSONException e) {
+            Log.w("msg", "fbApp api error-" + e.toString());
             e.printStackTrace();
         }
 
@@ -148,6 +160,8 @@ public class Create_Username_F extends Fragment {
         try {
             JSONObject jsonObject = new JSONObject(loginData);
             String code = jsonObject.optString("code");
+            Log.w("msg", "fbApp api code  " + code );
+
             if (code.equals("200")) {
                 JSONObject jsonArray = jsonObject.getJSONObject("msg");
                 JSONObject userdata = jsonArray.getJSONObject("User");
@@ -180,10 +194,14 @@ public class Create_Username_F extends Fragment {
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), MainMenuActivity.class));
             } else {
+                Log.w("msg", "fbApp invalide Token " );
+
                 Toast.makeText(getActivity(), "" + jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
             }
 
         } catch (JSONException e) {
+            Log.w("msg", "fbApp api code  erooror " + e.toString() );
+
             e.printStackTrace();
         }
 

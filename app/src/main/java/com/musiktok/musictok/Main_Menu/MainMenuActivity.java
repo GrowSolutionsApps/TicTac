@@ -3,16 +3,19 @@ package com.musiktok.musictok.Main_Menu;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.InstanceIdResult;
@@ -30,6 +33,7 @@ import com.musiktok.musictok.SimpleClasses.Functions;
 import com.musiktok.musictok.SimpleClasses.NetworkUtils;
 import com.musiktok.musictok.SimpleClasses.Variables;
 import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,30 +43,30 @@ public class MainMenuActivity extends AppCompatActivity {
     long mBackPressed;
 
     public static Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        mainMenuActivity=this;
+        mainMenuActivity = this;
 
-        intent=getIntent();
+        intent = getIntent();
 
         setIntent(null);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Variables.screen_height= displayMetrics.heightPixels;
-        Variables.screen_width= displayMetrics.widthPixels;
+        Variables.screen_height = displayMetrics.heightPixels;
+        Variables.screen_width = displayMetrics.widthPixels;
 
 
-        Variables.user_id=Functions.getSharedPreference(this).getString(Variables.u_id,"");
-        Variables.user_name=Functions.getSharedPreference(this).getString(Variables.u_name,"");
-        Variables.user_pic=Functions.getSharedPreference(this).getString(Variables.u_pic,"");
+        Variables.user_id = Functions.getSharedPreference(this).getString(Variables.u_id, "");
+        Variables.user_name = Functions.getSharedPreference(this).getString(Variables.u_name, "");
+        Variables.user_pic = Functions.getSharedPreference(this).getString(Variables.u_pic, "");
 
 
-
-        if(Functions.getSharedPreference(this).getBoolean(Variables.islogin,false)){
+        if (Functions.getSharedPreference(this).getBoolean(Variables.islogin, false)) {
             Get_Public_IP();
         }
 
@@ -70,20 +74,17 @@ public class MainMenuActivity extends AppCompatActivity {
 
             initScreen();
 
-        }
-
-        else {
+        } else {
             mainMenuFragment = (MainMenuFragment) getSupportFragmentManager().getFragments().get(0);
         }
-
 
 
         Functions.make_directry(Variables.app_hided_folder);
         Functions.make_directry(Variables.app_showing_folder);
         Functions.make_directry(Variables.draft_app_folder);
 
-        Log.d(Variables.tag,"Top status bar height:"+getStatusBarHeight(this));
-        Log.d(Variables.tag,"Bottom Navigation bar height:"+getNavigation_barHeight(this));
+        Log.d(Variables.tag, "Top status bar height:" + getStatusBarHeight(this));
+        Log.d(Variables.tag, "Bottom Navigation bar height:" + getNavigation_barHeight(this));
 
 
     }
@@ -92,9 +93,9 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(final Intent intent) {
         super.onNewIntent(intent);
-        if(intent!=null){
-            String type=intent.getStringExtra("type");
-            if(type!=null && type.equalsIgnoreCase("message")){
+        if (intent != null) {
+            String type = intent.getStringExtra("type");
+            if (type != null && type.equalsIgnoreCase("message")) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -116,7 +117,7 @@ public class MainMenuActivity extends AppCompatActivity {
                         transaction.addToBackStack(null);
                         transaction.replace(R.id.MainMenuFragment, chat_activity).commit();
                     }
-                },2000);
+                }, 2000);
 
             }
         }
@@ -137,13 +138,13 @@ public class MainMenuActivity extends AppCompatActivity {
         });
     }
 
-    public void Get_Public_IP(){
+    public void Get_Public_IP() {
         ApiRequest.Call_Api_GetRequest(this, "https://api.ipify.org/?format=json", new Callback() {
             @Override
             public void Responce(String resp) {
                 try {
-                    JSONObject responce=new JSONObject(resp);
-                    String ip=responce.optString("ip");
+                    JSONObject responce = new JSONObject(resp);
+                    String ip = responce.optString("ip");
 
                     Add_Firebase_tokon(ip);
                 } catch (JSONException e) {
@@ -153,7 +154,7 @@ public class MainMenuActivity extends AppCompatActivity {
         });
     }
 
-    public void Add_Firebase_tokon(String ip){
+    public void Add_Firebase_tokon(String ip) {
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -163,20 +164,20 @@ public class MainMenuActivity extends AppCompatActivity {
                             return;
                         }
                         String token = task.getResult().getToken();
-                        Functions.getSharedPreference(MainMenuActivity.this).edit().putString(Variables.device_token,token).commit();
+                        Functions.getSharedPreference(MainMenuActivity.this).edit().putString(Variables.device_token, token).commit();
 
-                        JSONObject params=new JSONObject();
+                        JSONObject params = new JSONObject();
                         try {
-                            params.put("user_id",Functions.getSharedPreference(MainMenuActivity.this).getString(Variables.u_id,""));
-                            params.put("device",getString(R.string.device));
-                            params.put("version",getString(R.string.version));
-                            params.put("ip",""+ip);
-                            params.put("device_token",token);
+                            params.put("user_id", Functions.getSharedPreference(MainMenuActivity.this).getString(Variables.u_id, ""));
+                            params.put("device", getString(R.string.device));
+                            params.put("version", getString(R.string.version));
+                            params.put("ip", "" + ip);
+                            params.put("device_token", token);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        ApiRequest.Call_Api(MainMenuActivity.this, ApiLinks.addDeviceData,params,null);
+                        ApiRequest.Call_Api(MainMenuActivity.this, ApiLinks.addDeviceData, params, null);
 
                     }
                 });
@@ -190,14 +191,16 @@ public class MainMenuActivity extends AppCompatActivity {
             if (count == 0) {
                 if (mBackPressed + 2000 > System.currentTimeMillis()) {
                     super.onBackPressed();
+//                    finishAffinity();
                     return;
                 } else {
-                    Functions.show_toast(getBaseContext(),"Tap Again To Exit");
+                    Functions.show_toast(getBaseContext(), "Tap Again To Exit");
                     mBackPressed = System.currentTimeMillis();
 
                 }
             } else {
                 super.onBackPressed();
+//                finishAffinity();
             }
         }
 
@@ -229,7 +232,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
 
-    public static int getNavigation_barHeight(Context context){
+    public static int getNavigation_barHeight(Context context) {
         int navigationBarHeight = 0;
         int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
         if (resourceId > 0) {

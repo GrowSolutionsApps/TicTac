@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/mainlayout"
     android:gravity="bottom"
-    android:background="@color/app_color">
+    android:background="@drawable/gredient_color">
 
 
     <RelativeLayout
@@ -42,6 +42,7 @@
                     android:id="@+id/username"
                     android:textStyle="bold"
                     android:textColor="@color/white"
+                    android:fontFamily="@font/pop_medium"
                     android:layout_marginLeft="10dp" />
 
             </RelativeLayout>
@@ -52,6 +53,7 @@
                 android:id="@+id/message"
                 android:text="Your Message"
                 android:textSize="13dp"
+                android:fontFamily="@font/pop_regular"
                 android:maxLines="2"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"

@@ -74,12 +74,15 @@ public class Preview_Video_A extends AppCompatActivity  implements Player.EventL
         select_postion=0;
         video_url= Variables.outputfile2;
         findViewById(R.id.Goback).setOnClickListener(v-> {
-
                 finish();
                 overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
 
         });
+        findViewById(R.id.rel_back).setOnClickListener(v-> {
+            finish();
+            overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
 
+        });
 
         findViewById(R.id.next_btn).setOnClickListener(v-> {
 

@@ -11,7 +11,7 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/lightgraycolor"
+        android:background="@color/white"
         android:orientation="vertical" />
 
     <RelativeLayout
@@ -50,8 +50,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Username"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textColor="#1D3433"
+                    android:fontFamily="@font/pop_medium"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -61,9 +62,10 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:maxLines="2"
+                    android:fontFamily="@font/pop_regular"
                     android:text="User name upload a new Video"
-                    android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textColor="#1D3433"
+                    android:textSize="12dp" />
 
 
             </LinearLayout>
@@ -75,7 +77,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/button_rounded_background"
+                android:background="@drawable/login_btn_draw"
                 android:paddingLeft="15dp"
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"

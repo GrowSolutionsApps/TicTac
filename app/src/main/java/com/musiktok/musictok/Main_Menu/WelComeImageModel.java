@@ -18,42 +18,48 @@ package com.musiktok.musictok.Main_Menu;
   * Created by grow solution on 14/05/2019.
   */
 
-public class WelComeImageModel {
-
-    private int image_drawable;
-    private String image_text;
-    private String title;
-    private String subTitle;
-
-    public int getImage_drawable() {
-        return image_drawable;
-    }
-
-    public void setImage_drawable(int image_drawable) {
-        this.image_drawable = image_drawable;
-    }
-
-    public String getImage_text() {
-        return image_text;
-    }
-
-    public void setImage_text(String image_text) {
-        this.image_text = image_text;
-    }
-
+ public class WelComeImageModel {
+     private int image_drawable;
+     private String image_text;
+     private String title;
+     private String subTitle;
+     private String nextTitle;
+     //     WelComeImageModel(int image_drawable, String image_text, String title, String subTitle,
+//                       String nextTitle) {
+//         this.image_drawable = image_drawable;
+//         this.image_text = image_text;
+//         this.title = title;
+//         this.subTitle = subTitle;
+//         this.nextTitle = nextTitle;
+//     }
+     public int getImage_drawable() {
+         return image_drawable;
+     }
+     public void setImage_drawable(int image_drawable) {
+         this.image_drawable = image_drawable;
+     }
+     public String getImage_text() {
+         return image_text;
+     }
+     public void setImage_text(String image_text) {
+         this.image_text = image_text;
+     }
      public String getTitle() {
          return title;
      }
-
      public void setTitle(String title) {
          this.title = title;
      }
-
      public String getSubTitle() {
          return subTitle;
      }
-
      public void setSubTitle(String subTitle) {
          this.subTitle = subTitle;
+     }
+     public String getNextTitle() {
+         return nextTitle;
+     }
+     public void setNextTitle(String nextTitle) {
+         this.nextTitle = nextTitle;
      }
  }

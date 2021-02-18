@@ -10,6 +10,7 @@
         android:layout_height="150dp"
         android:scaleType="centerCrop"
         android:layout_marginLeft="5dp"
+        fresco:roundedCornerRadius="@dimen/_10sdp"
         android:layout_marginRight="5dp"
         fresco:placeholderImage="@drawable/image_placeholder"
         android:id="@+id/video_thumbnail"/>

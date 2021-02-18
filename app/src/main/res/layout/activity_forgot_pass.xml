@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:clickable="true"
-    android:focusable="true"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
 
     <ViewFlipper
         android:id="@+id/viewflliper"
@@ -18,7 +18,8 @@
             android:id="@+id/confirmation_code"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -33,29 +34,51 @@
                     android:background="@drawable/d_bottom_gray_line">
 
 
-                    <ImageButton
+                   <!-- <ImageButton
                         android:id="@+id/Goback1"
-                        android:layout_width="@dimen/back_btn_width"
-                        android:layout_height="@dimen/back_btn_height"
+                        android:layout_width="@dimen/_9sdp"
+                        android:layout_height="@dimen/_16sdp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="@dimen/_10sdp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitStart"
-                        android:src="@drawable/ic_back"
-                        android:tint="@color/black" />
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />-->
+                    <RelativeLayout
+                        android:id="@+id/rel_back1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="@dimen/_15sdp">
+
+                        <ImageButton
+                            android:id="@+id/Goback1"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/_5sdp"
+                            android:scaleType="fitCenter"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_new_back"
+                            android:tint="@color/black"/>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_centerVertical="true"
+                        android:fontFamily="@font/pop_medium"
                         android:text="Reset"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title"
-                        android:textStyle="bold" />
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -80,32 +103,42 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/iv_back"
-                        android:text="Forgot password"
-                        android:textColor="@color/black"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/pop_medium"
+                        android:text="Forgot password?"
+                        android:textColor="#141822"
+                        android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pop_light"
                         android:justificationMode="inter_word"
-                        android:paddingTop="15dp"
+                        android:paddingTop="10dp"
                         android:text="We'll email you a code to reset your password."
-                        android:textColor="@color/black" />
+                        android:textColor="#8024253D"
+                        android:textSize="12dp" />
 
-                    <EditText
-                        android:id="@+id/recover_email"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_centerVertical="true"
-                        android:layout_marginTop="30dp"
-                        android:backgroundTint="@color/transparent"
-                        android:hint="Email address"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/graycolor"
-                        android:textSize="14dp" />
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:background="@drawable/edttxt_bg">
 
+                        <EditText
+                            android:id="@+id/recover_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:backgroundTint="@color/transparent"
+                            android:fontFamily="@font/pop_regular"
+                            android:hint="Email address"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/graycolor"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -113,196 +146,60 @@
                         android:layout_below="@+id/main_div"
                         android:background="@color/graycolor" />
 
-
-                    <Button
-                        android:id="@+id/btn_next"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/login_terms_condition_txt"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:clickable="false"
-                        android:enabled="false"
-                        android:gravity="center"
-                        android:text="Reset"
-                        android:textColor="@color/white"
-                        android:textSize="14dp"
-                        android:theme="@style/Button_style" />
+                    <!--
+                                        <Button
+                                            android:id="@+id/btn_next"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="50dp"
+                                            android:layout_below="@+id/login_terms_condition_txt"
+                                            android:layout_centerInParent="true"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="40dp"
+                                            android:clickable="false"
+                                            android:enabled="false"
+                                            android:gravity="center"
+                                            android:text="Reset"
+                                            android:textColor="@color/white"
+                                            android:textSize="14dp"
+                                            android:theme="@style/Button_style" />-->
 
 
                 </LinearLayout>
             </RelativeLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/d_bottom_gray_line">
-
-
-                    <ImageButton
-                        android:id="@+id/Goback2"
-                        android:layout_width="@dimen/back_btn_width"
-                        android:layout_height="@dimen/back_btn_height"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/ic_back"
-                        android:tint="@color/black" />
-
-
-                </RelativeLayout>
-
-            </androidx.appcompat.widget.Toolbar>
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/toolbar"
-                android:layout_margin="20dp"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:id="@+id/btn_next"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:background="@drawable/img_new_next_bg"
+                android:gravity="center">
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Enter 4 digit Code"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:paddingBottom="15dp"
-                            android:textColor="@color/gray"
-                            android:id="@+id/edit_email"
-                            android:text="Your code was emailed to "
-                            android:textSize="14dp" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <com.chaos.view.PinView
-                            android:id="@+id/et_code"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:cursorVisible="true"
-                            android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textSize="22dp"
-                            app:hideLineWhenFilled="false"
-                            app:itemCount="4"
-                            app:itemHeight="70dp"
-                            app:itemSpacing="10dp"
-                            app:itemWidth="65dp"
-                            app:lineColor="@color/gray"
-                            app:viewType="line" />
-
-                    </LinearLayout>
-
-
-                    <Button
-                        android:id="@+id/confirm_otp"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/login_terms_condition_txt"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:clickable="false"
-                        android:enabled="false"
-                        android:gravity="center"
-                        android:text="Next"
-                        android:textColor="@color/white"
-                        android:textSize="14dp"
-                        android:theme="@style/Button_style" />
-
-                    <RelativeLayout
-                        android:id="@+id/rl1_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        android:visibility="gone">
-
-
-                        <TextView
-                            android:id="@+id/tv1_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:textColor="@color/black"
-                            android:gravity="center_vertical"
-                            android:textSize="16dp" />
-
-
-                    </RelativeLayout>
-
-
-                    <TextView
-                        android:id="@+id/resend_code"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/or_id"
-                        android:text="Resend Code"
-                        android:textColor="@color/app_color"
-                        android:textSize="16dp" />
-
-
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_new_baseline_check"
+                    android:text="Next"
+                    android:textSize="14dp"
+                    android:theme="@style/Button_style" />
 
             </LinearLayout>
-
-
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -316,21 +213,43 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/d_bottom_gray_line">
 
+                    <!--
 
-                    <ImageButton
-                        android:id="@+id/Goback3"
-                        android:layout_width="@dimen/back_btn_width"
-                        android:layout_height="@dimen/back_btn_height"
+                                        <ImageButton
+                                            android:id="@+id/Goback3"
+                                            android:layout_width="@dimen/back_btn_width"
+                                            android:layout_height="@dimen/back_btn_height"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_alignParentLeft="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="5dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@android:color/transparent"
+                                            android:scaleType="fitStart"
+                                            android:src="@drawable/ic_new_back"
+                                            android:tint="@color/black" />
+                    -->
+
+                    <RelativeLayout
+                        android:id="@+id/rel_back3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/ic_back"
-                        android:tint="@color/black" />
+                        android:layout_marginLeft="@dimen/_15sdp">
 
+                        <ImageButton
+                            android:id="@+id/Goback3"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/_5sdp"
+                            android:scaleType="fitCenter"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_new_back" />
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
@@ -357,18 +276,21 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/iv_back"
+                        android:fontFamily="@font/pop_medium"
                         android:text="Create password"
-                        android:textColor="@color/black"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:textColor="#141822"
+                        android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/pop_light"
                         android:justificationMode="inter_word"
+                        android:lineSpacingExtra="@dimen/_1sdp"
                         android:paddingTop="15dp"
                         android:text="Use 8-20 characters from at least 2 categories: letters, numbers, special characters"
-                        android:textColor="@color/black" />
+                        android:textColor="#8024253D"
+                        android:textSize="@dimen/_9sdp" />
 
 
                     <EditText
@@ -378,6 +300,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginTop="30dp"
                         android:backgroundTint="@color/transparent"
+                        android:fontFamily="@font/pop_light"
                         android:hint="Password"
                         android:inputType="text"
                         android:textColor="@color/black"
@@ -403,6 +326,7 @@
                         android:layout_marginTop="40dp"
                         android:clickable="false"
                         android:enabled="false"
+                        android:fontFamily="@font/pop_regular"
                         android:gravity="center"
                         android:text="Login"
                         android:textColor="@color/white"
@@ -415,6 +339,174 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/d_bottom_gray_line">
+
+
+                    <ImageButton
+                        android:id="@+id/Goback2"
+                        android:layout_width="@dimen/_9sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pop_medium"
+                        android:text="Enter 4 digit Code"
+                        android:textColor="#141822"
+                        android:textSize="18dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/edit_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/pop_light"
+                            android:paddingBottom="15dp"
+                            android:text="Your code was emailed to "
+                            android:textColor="#8024253D"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <com.chaos.view.PinView
+                            android:id="@+id/et_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:cursorVisible="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/pop_regular"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="22dp"
+                            app:hideLineWhenFilled="false"
+                            app:itemCount="4"
+                            app:itemHeight="70dp"
+                            app:itemSpacing="10dp"
+                            app:itemWidth="65dp"
+                            app:lineColor="@color/gray"
+                            app:viewType="line" />
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/confirm_otp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/login_terms_condition_txt"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="40dp"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:fontFamily="@font/pop_regular"
+                        android:gravity="center"
+                        android:text="Next"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:theme="@style/Button_style" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl1_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+
+
+                        <TextView
+                            android:id="@+id/tv1_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/resend_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/or_id"
+                        android:fontFamily="@font/pop_regular"
+                        android:text="Resend Code"
+                        android:textColor="@color/app_color"
+                        android:textSize="14dp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
     </ViewFlipper>
 
 </FrameLayout>

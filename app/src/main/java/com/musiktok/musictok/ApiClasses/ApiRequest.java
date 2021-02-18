@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
+import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -21,6 +22,7 @@ import com.musiktok.musictok.Interfaces.Callback;
 import com.musiktok.musictok.Main_Menu.MainMenuActivity;
 import com.musiktok.musictok.SimpleClasses.Variables;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -31,36 +33,50 @@ import io.paperdb.Paper;
 public class ApiRequest {
 
 
-    public static void Call_Api (final Activity context, final String url, JSONObject jsonObject,
-                                 final Callback callback){
-
-
-        if(!Variables.is_secure_info) {
-            final String[] urlsplit = url.split("/");
-            Log.d(Variables.tag, url);
-
-            if (jsonObject != null)
-                Log.d(Variables.tag + urlsplit[urlsplit.length - 1], jsonObject.toString());
+    public static void Call_Api(final Activity context, final String url, JSONObject jsonObject, final Callback callback) {
+        try {
+            Log.w("msg", "google Call_Api " + jsonObject.getString("social_id"));
+            Log.w("msg", "google url " + url);
+            Log.w("msg", "google social_id " + jsonObject.getString("social_id"));
+            Log.w("msg", "google social " + jsonObject.getString("social"));
+            Log.w("msg", "google auth_token " + jsonObject.getString("auth_token"));
+        } catch (JSONException e) {
+            Log.w("msg", "fbApp api call Api  " + e.toString() );
         }
 
-         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+        if (!Variables.is_secure_info) {
+            final String[] urlsplit = url.split("/");
+            Log.w("msg", "google call " + url);
+
+            if (jsonObject != null)
+                Log.w("msg", "google  Api jsonObject app " + urlsplit[urlsplit.length - 1]);
+//            Log.d(Variables.tag + urlsplit[urlsplit.length - 1], jsonObject.toString());
+
+        }
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 url, jsonObject,
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.w("msg", "fbApp api call response  " + response);
 
+//                        try {
+//                            Log.w("msg", "google JsonObjectRequest " + jsonObject.getString("social_id"));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
 
-                        if(!Variables.is_secure_info) {
+                        if (!Variables.is_secure_info) {
                             final String[] urlsplit = url.split("/");
                             Log.d(Variables.tag + urlsplit[urlsplit.length - 1], response.toString());
                         }
 
-                        if(callback!=null) {
+                        if (callback != null) {
                             callback.Responce(response.toString());
                         }
-
-                        if(response.optString("code","").equalsIgnoreCase("501")){
+                        if (response.optString("code", "").equalsIgnoreCase("501")) {
                             Logout(context);
                         }
 
@@ -69,57 +85,64 @@ public class ApiRequest {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                if(!Variables.is_secure_info) {
+                Log.w("msg", "google  Api onErrorResponse getMessage " + error.getMessage());
+                Log.w("msg", "google  Api onErrorResponse getLocalizedMessage " + error.getLocalizedMessage());
+                Log.w("msg", "google  Api onErrorResponse getNetworkTimeMs " + error.getNetworkTimeMs());
+                Log.w("msg", "google  Api onErrorResponse toString " + error.toString());
+                Log.w("msg", "google  Api onErrorResponse fillInStackTrace " + error.fillInStackTrace());
+
+                if (!Variables.is_secure_info) {
                     final String[] urlsplit = url.split("/");
                     Log.d(Variables.tag + urlsplit[urlsplit.length - 1], error.toString());
                 }
 
-                if(callback!=null)
-                  callback .Responce(error.toString());
+                if (callback != null)
+                    callback.Responce(error.toString());
 
             }
         }) {
-             @Override
-             public String getBodyContentType() {
-                 return "application/json; charset=utf-8";
-             }
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
 
-             @Override
-             public Map<String, String> getHeaders() throws AuthFailureError {
-                 HashMap<String, String> headers = new HashMap<String, String>();
-                 headers.put("Api-Key",ApiLinks.API_KEY);
-                 headers.put("User-Id",Variables.sharedPreferences.getString(Variables.u_id,null));
-                 headers.put("Auth-Token", Variables.sharedPreferences.getString(Variables.auth_token,null));
-                 Log.d(Variables.tag,headers.toString());
-                 return headers;
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Api-Key", ApiLinks.API_KEY);
+                headers.put("User-Id", Variables.sharedPreferences.getString(Variables.u_id, null));
+                headers.put("Auth-Token", Variables.sharedPreferences.getString(Variables.auth_token, null));
+                Log.d(Variables.tag, headers.toString());
+                return headers;
 
-             }
-         };
+            }
+        };
         try {
 
-            if(context!=null) {
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-            jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            if (context != null) {
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                 requestQueue.getCache().clear();
                 requestQueue.add(jsonObjReq);
-        }
+            }
 
 
-        }catch (Exception e){
-            Log.d(Variables.tag,e.toString());
+        } catch (Exception e) {
+            Log.w("msg", "google  Api Exception  " + e.toString());
+            e.printStackTrace();
         }
 
     }
 
 
-    public static void Call_Api_GetRequest (final Activity context, final String url,
-                                 final Callback callback){
+    public static void Call_Api_GetRequest(final Activity context, final String url,
+                                           final Callback callback) {
 
 
-        if(!Variables.is_secure_info) {
+        if (!Variables.is_secure_info) {
             final String[] urlsplit = url.split("/");
             Log.d(Variables.tag, url);
 
@@ -132,16 +155,16 @@ public class ApiRequest {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        if(!Variables.is_secure_info) {
+                        if (!Variables.is_secure_info) {
                             final String[] urlsplit = url.split("/");
                             Log.d(Variables.tag + urlsplit[urlsplit.length - 1], response.toString());
                         }
 
-                        if(callback!=null) {
+                        if (callback != null) {
                             callback.Responce(response.toString());
                         }
 
-                        if(response.optString("code","").equalsIgnoreCase("501")){
+                        if (response.optString("code", "").equalsIgnoreCase("501")) {
                             Logout(context);
                         }
 
@@ -150,13 +173,13 @@ public class ApiRequest {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                if(!Variables.is_secure_info) {
+                if (!Variables.is_secure_info) {
                     final String[] urlsplit = url.split("/");
                     Log.d(Variables.tag + urlsplit[urlsplit.length - 1], error.toString());
                 }
 
-                if(callback!=null)
-                    callback .Responce(error.toString());
+                if (callback != null)
+                    callback.Responce(error.toString());
 
             }
         }) {
@@ -168,37 +191,37 @@ public class ApiRequest {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Api-Key",ApiLinks.API_KEY);
-                headers.put("User-Id",Variables.sharedPreferences.getString(Variables.u_id,null));
-                headers.put("Auth-Token", Variables.sharedPreferences.getString(Variables.auth_token,null));
-                Log.d(Variables.tag,headers.toString());
+                headers.put("Api-Key", ApiLinks.API_KEY);
+                headers.put("User-Id", Variables.sharedPreferences.getString(Variables.u_id, null));
+                headers.put("Auth-Token", Variables.sharedPreferences.getString(Variables.auth_token, null));
+                Log.d(Variables.tag, headers.toString());
                 return headers;
 
             }
         };
         try {
 
-        if(context!=null) {
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-            jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            if (context != null) {
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                 requestQueue.getCache().clear();
                 requestQueue.add(jsonObjReq);
-        }
-        }catch (Exception e){
-            Log.d(Variables.tag,e.toString());
+            }
+        } catch (Exception e) {
+            Log.d(Variables.tag, e.toString());
         }
     }
 
 
-    public static void Logout(Activity activity){
+    public static void Logout(Activity activity) {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.
                 Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
                 build();
-        GoogleSignInClient googleSignInClient= GoogleSignIn.getClient(activity,gso);
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(activity, gso);
         googleSignInClient.signOut();
 
         LoginManager.getInstance().logOut();
@@ -208,7 +231,7 @@ public class ApiRequest {
         editor.putString(Variables.u_id, "");
         editor.putString(Variables.u_name, "");
         editor.putString(Variables.u_pic, "");
-        editor.putString(Variables.auth_token,null);
+        editor.putString(Variables.auth_token, null);
         editor.putBoolean(Variables.islogin, false);
         editor.commit();
         activity.finish();

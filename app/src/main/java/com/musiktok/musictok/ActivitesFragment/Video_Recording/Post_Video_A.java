@@ -154,6 +154,7 @@ public class Post_Video_A extends AppCompatActivity implements ServiceCallback, 
 
 
         findViewById(R.id.Goback).setOnClickListener(this);
+        findViewById(R.id.rel_back).setOnClickListener(this);
 
         findViewById(R.id.privacy_type_layout).setOnClickListener(this);
         findViewById(R.id.post_btn).setOnClickListener(this);
@@ -286,6 +287,10 @@ public class Post_Video_A extends AppCompatActivity implements ServiceCallback, 
         switch (v.getId()) {
 
             case R.id.Goback:
+                onBackPressed();
+                break;
+
+            case R.id.rel_back:
                 onBackPressed();
                 break;
 

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -29,12 +31,14 @@ import static java.util.Calendar.YEAR;
 public class DOB_F extends Fragment {
     View view;
     DatePicker datePicker;
-    Button btn_dob_next;
-    String current_date,st_year;
+    LinearLayout btn_dob_next;
+    String current_date, st_year;
     Date c;
     ImageView Goback;
+    RelativeLayout rel_back;
     String fromWhere;
     User_Model user__model = new User_Model();
+
     public DOB_F() {
 
     }
@@ -48,6 +52,8 @@ public class DOB_F extends Fragment {
         datePicker = view.findViewById(R.id.datePicker);
         btn_dob_next = view.findViewById(R.id.btn_dob_next);
         Goback = view.findViewById(R.id.Goback);
+        rel_back = view.findViewById(R.id.rel_back);
+        rel_back = view.findViewById(R.id.rel_back);
         datePicker.setMaxDate(System.currentTimeMillis() - 1000);
 
         Bundle bundle = getArguments();
@@ -72,18 +78,17 @@ public class DOB_F extends Fragment {
                 String formattedDate = df.format(c);
                 Date dob = null;
                 Date currentdate = null;
-                try
-                {
+                try {
                     dob = df.parse(formattedDate);
                     currentdate = df.parse(current_date);
-                } catch (ParseException e){
+                } catch (ParseException e) {
 
                 }
 
-                int value = getDiffYears(currentdate,dob);
+                int value = getDiffYears(currentdate, dob);
 
-                if(value > 17){
-                    if(fromWhere.equals("signup")){
+                if (value > 17) {
+                    if (fromWhere.equals("signup")) {
                         Email_Phone_F emailPhoneF = new Email_Phone_F(fromWhere);
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
@@ -92,7 +97,7 @@ public class DOB_F extends Fragment {
                         emailPhoneF.setArguments(bundle);
                         transaction.addToBackStack(null);
                         transaction.replace(R.id.dob_fragment, emailPhoneF).commit();
-                    }else if(fromWhere.equals("social") ||fromWhere.equals("fromPhone")){
+                    } else if (fromWhere.equals("social") || fromWhere.equals("fromPhone")) {
                         Create_Username_F signUp_fragment = new Create_Username_F(fromWhere);
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
@@ -102,13 +107,19 @@ public class DOB_F extends Fragment {
                         transaction.addToBackStack(null);
                         transaction.replace(R.id.dob_fragment, signUp_fragment).commit();
                     }
-                }else{
+                } else {
                     Toast.makeText(getActivity(), "Age must be 18 or over", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         Goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+        rel_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
@@ -127,6 +138,7 @@ public class DOB_F extends Fragment {
         }
         return diff;
     }
+
     public static Calendar getCalendar(Date date) {
         Calendar cal = Calendar.getInstance(Locale.US);
         cal.setTime(date);

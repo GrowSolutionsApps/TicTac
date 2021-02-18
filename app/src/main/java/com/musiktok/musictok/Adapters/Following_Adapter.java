@@ -3,6 +3,8 @@ package com.musiktok.musictok.Adapters;
 import android.content.Context;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,17 +119,24 @@ public class Following_Adapter extends RecyclerView.Adapter<Following_Adapter.Cu
 
         if(item.follow_status_button !=null &&
                 (item.follow_status_button.equalsIgnoreCase("follow") || item.follow_status_button.equalsIgnoreCase("follow back"))){
-            holder.action_txt.setBackground(ContextCompat.getDrawable(context, R.drawable.button_rounded_background));
+            holder.action_txt.setBackground(ContextCompat.getDrawable(context, R.drawable.login_btn_draw));
+//            holder.action_txt.setBackground(ContextCompat.getDrawable(context, R.drawable.button_rounded_background));
             holder.action_txt.setTextColor(ContextCompat.getColor(context, R.color.white));
-
+//            Typeface face = Typeface.createFromAsset(context.getAssets(),
+//                    "fonts/pop_medium.ttf");
+//            holder.action_txt.setTypeface(face);
         }
 
 
         else if(item.follow_status_button !=null &&
                 (item.follow_status_button.equalsIgnoreCase("following")|| item.follow_status_button.equalsIgnoreCase("friends"))){
+//            holder.action_txt.setBackground(ContextCompat.getDrawable(context, R.drawable.d_gray_border));
+//            holder.action_txt.setTextColor(ContextCompat.getColor(context, R.color.black));
             holder.action_txt.setBackground(ContextCompat.getDrawable(context, R.drawable.d_gray_border));
+//            holder.action_txt.setBackground(ContextCompat.getDrawable(context, R.drawable.button_rounded_background));
             holder.action_txt.setTextColor(ContextCompat.getColor(context, R.color.black));
-
+//            Typeface face = Typeface.createFromAsset(context.getAssets(),
+//                    "fonts/pop_regular.ttf");
         }
 
 

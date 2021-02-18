@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -121,7 +122,7 @@ public class Comments_Adapter extends RecyclerView.Adapter<Comments_Adapter.Cust
         }
 
         if (item.arrayList != null && item.arrayList.size() > 0) {
-            holder.reply_count.setText("view replies (" + item.arrayList.size() + ")");
+            holder.reply_count.setText("view " + item.arrayList.size() + " replies" );
         } else {
             holder.reply_count.setVisibility(View.GONE);
         }
@@ -158,8 +159,9 @@ public class Comments_Adapter extends RecyclerView.Adapter<Comments_Adapter.Cust
 
         TextView username, message, reply_count, like_txt, show_less_txt;
         ImageView user_pic, like_image;
-        LinearLayout message_layout, less_layout , like_layout;
+        LinearLayout message_layout, less_layout;
         RecyclerView reply_recycler_view;
+        RelativeLayout like_layout;
 
         public CustomViewHolder(View view) {
             super(view);

@@ -28,12 +28,11 @@ public class Favourite_Main_F extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_favourite_main, container, false);
-        context=getContext();
+        view = inflater.inflate(R.layout.fragment_favourite_main, container, false);
+        context = getContext();
 
         view.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,17 +40,24 @@ public class Favourite_Main_F extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+        view.findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
 
         Set_tabs();
         return view;
     }
 
 
-
     protected TabLayout tabLayout;
     protected ViewPager menu_pager;
     ViewPagerAdapter adapter;
-    public void Set_tabs(){
+
+    public void Set_tabs() {
 
         adapter = new ViewPagerAdapter(getChildFragmentManager());
         menu_pager = (ViewPager) view.findViewById(R.id.viewpager);
@@ -59,17 +65,15 @@ public class Favourite_Main_F extends Fragment {
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
 
 
-
-        adapter.addFrag(new Favourite_videos_F(),"Videos");
-        adapter.addFrag(new Favourite_Sound_F(),"Sounds");
-        adapter.addFrag(new Search_HashTags_F("favourite"),"HashTag");
+        adapter.addFrag(new Favourite_videos_F(), "Videos");
+        adapter.addFrag(new Favourite_Sound_F(), "Sounds");
+        adapter.addFrag(new Search_HashTags_F("favourite"), "HashTag");
 
 
         menu_pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(menu_pager);
 
     }
-
 
 
 }

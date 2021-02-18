@@ -7,12 +7,20 @@ android {
         applicationId "com.musiktok.videoapp"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 22
-        versionName "3.1"
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+        signingConfigs {
+            release {
+                storeFile file("app/tictic.jks")
+                storePassword '123456'
+                keyAlias '123456'
+                keyPassword '123456'
+            }
         }
     }
 
@@ -45,6 +53,9 @@ android {
     }
 
 
+}
+repositories {
+    jcenter()
 }
 
 dependencies {
@@ -140,5 +151,7 @@ dependencies {
     implementation 'com.github.joielechong:countrycodepicker:2.4.2'
 
     implementation 'com.chaos.view:pinview:1.4.3'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.matthew-tamlin:sliding-intro-screen:3.2.0'
 }
 apply plugin: 'com.google.gms.google-services'

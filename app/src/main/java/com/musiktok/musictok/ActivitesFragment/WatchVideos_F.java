@@ -180,7 +180,12 @@ public class WatchVideos_F extends AppCompatActivity implements Player.EventList
                 onBackPressed();
             }
         });
-
+        findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         write_layout = findViewById(R.id.write_layout);
         message_edit = findViewById(R.id.message_edit);

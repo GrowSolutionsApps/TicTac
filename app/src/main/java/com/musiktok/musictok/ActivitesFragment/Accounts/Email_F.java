@@ -9,8 +9,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,12 +33,13 @@ import org.json.JSONObject;
 
 public class Email_F extends Fragment {
     View view;
-    EditText email_edit,password_edt;
-    TextView login_terms_condition_txt,forgot_pass_btn;
-    Button next_btn;
+    EditText email_edit, password_edt;
+    TextView login_terms_condition_txt, forgot_pass_btn;
+    LinearLayout next_btn;
     SharedPreferences sharedPreferences;
     String fromWhere;
     User_Model user__model;
+
     public Email_F(User_Model user__model, String fromWhere) {
         this.user__model = user__model;
         this.fromWhere = fromWhere;
@@ -53,23 +56,23 @@ public class Email_F extends Fragment {
         forgot_pass_btn = view.findViewById(R.id.forgot_pass_btn);
         next_btn = view.findViewById(R.id.btn_next);
         login_terms_condition_txt = view.findViewById(R.id.login_terms_condition_txt);
-        sharedPreferences= Functions.getSharedPreference(getContext());
-        if(fromWhere != null && fromWhere != null) {
+        sharedPreferences = Functions.getSharedPreference(getContext());
+        if (fromWhere != null && fromWhere != null) {
             if (fromWhere.equals("login")) {
                 login_terms_condition_txt.setVisibility(View.GONE);
                 forgot_pass_btn.setVisibility(View.VISIBLE);
                 password_edt.setVisibility(View.VISIBLE);
-                next_btn.setText("Log in");
-            }else{
-                if(user__model != null){
+//                next_btn.setText("Log in");
+            } else {
+                if (user__model != null) {
                     email_edit.setText(user__model.email);
                     next_btn.setEnabled(true);
+                    next_btn.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg));
                     next_btn.setClickable(true);
                 }
             }
         }
-
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
 
         email_edit.addTextChangedListener(new TextWatcher() {
@@ -83,12 +86,15 @@ public class Email_F extends Fragment {
                 String txtName = email_edit.getText().toString();
                 if (txtName.length() > 0) {
                     next_btn.setEnabled(true);
+                    next_btn.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg));
                     next_btn.setClickable(true);
                 } else {
                     next_btn.setEnabled(false);
+                    next_btn.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg_disable));
                     next_btn.setClickable(false);
                 }
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -98,10 +104,10 @@ public class Email_F extends Fragment {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Check_Validation()){
-                    if(fromWhere.equals("login")){
+                if (Check_Validation()) {
+                    if (fromWhere.equals("login")) {
                         call_api_for_login();
-                    }else {
+                    } else {
                         Create_Password_F create_password_f = new Create_Password_F("fromEmail");
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
@@ -119,7 +125,7 @@ public class Email_F extends Fragment {
         forgot_pass_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),Forgot_Pass_A.class));
+                startActivity(new Intent(getActivity(), Forgot_Pass_A.class));
             }
         });
         return view;
@@ -130,12 +136,12 @@ public class Email_F extends Fragment {
         try {
 
             parameters.put("email", email_edit.getText().toString());
-            parameters.put("password",""+password_edt.getText().toString());
-            } catch (JSONException e) {
+            parameters.put("password", "" + password_edt.getText().toString());
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Functions.Show_loader(getActivity(),false,false);
+        Functions.Show_loader(getActivity(), false, false);
         ApiRequest.Call_Api(getActivity(), ApiLinks.login, parameters, new Callback() {
             @Override
             public void Responce(String resp) {
@@ -146,34 +152,35 @@ public class Email_F extends Fragment {
         });
 
     }
-    public void parse_login_data(String loginData){
-        try {
-            JSONObject jsonObject=new JSONObject(loginData);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
 
-                JSONObject jsonArray=jsonObject.getJSONObject("msg");
+    public void parse_login_data(String loginData) {
+        try {
+            JSONObject jsonObject = new JSONObject(loginData);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
+
+                JSONObject jsonArray = jsonObject.getJSONObject("msg");
                 JSONObject userdata = jsonArray.getJSONObject("User");
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(Variables.u_id,userdata.optString("id"));
-                editor.putString(Variables.f_name,userdata.optString("first_name"));
-                editor.putString(Variables.l_name,userdata.optString("last_name"));
-                editor.putString(Variables.u_name,userdata.optString("username"));
-                editor.putString(Variables.gender,userdata.optString("gender"));
-                editor.putString(Variables.u_pic,userdata.optString("profile_pic"));
-                editor.putString(Variables.auth_token,userdata.optString("auth_token"));
-                editor.putBoolean(Variables.islogin,true);
+                editor.putString(Variables.u_id, userdata.optString("id"));
+                editor.putString(Variables.f_name, userdata.optString("first_name"));
+                editor.putString(Variables.l_name, userdata.optString("last_name"));
+                editor.putString(Variables.u_name, userdata.optString("username"));
+                editor.putString(Variables.gender, userdata.optString("gender"));
+                editor.putString(Variables.u_pic, userdata.optString("profile_pic"));
+                editor.putString(Variables.auth_token, userdata.optString("auth_token"));
+                editor.putBoolean(Variables.islogin, true);
                 editor.commit();
-                Variables.user_id= Functions.getSharedPreference(getContext()).getString(Variables.u_id,"");
+                Variables.user_id = Functions.getSharedPreference(getContext()).getString(Variables.u_id, "");
 
-                Variables.Reload_my_videos=true;
-                Variables.Reload_my_videos_inner=true;
-                Variables.Reload_my_likes_inner=true;
-                Variables.Reload_my_notification=true;
+                Variables.Reload_my_videos = true;
+                Variables.Reload_my_videos_inner = true;
+                Variables.Reload_my_likes_inner = true;
+                Variables.Reload_my_notification = true;
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), MainMenuActivity.class));
 
-            }else{
+            } else {
                 Toast.makeText(getActivity(), jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
             }
 
@@ -183,17 +190,17 @@ public class Email_F extends Fragment {
     }
 
     // this will check the validations like none of the field can be the empty
-    public boolean Check_Validation(){
+    public boolean Check_Validation() {
 
         final String st_email = email_edit.getText().toString();
         final String password = password_edt.getText().toString();
 
-        if(TextUtils.isEmpty(st_email)){
+        if (TextUtils.isEmpty(st_email)) {
             email_edit.setError("Please enter email");
             return false;
         }
-        if(fromWhere.equals("login")){
-            if(TextUtils.isEmpty(password)){
+        if (fromWhere.equals("login")) {
+            if (TextUtils.isEmpty(password)) {
                 password_edt.setError("Please enter password");
                 return false;
             }

@@ -35,24 +35,43 @@
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/pop_medium"
                     android:text="Post"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/title" />
 
 
-                <ImageButton
-                    android:id="@+id/Goback"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                <!--          <ImageButton
+                              android:id="@+id/Goback"
+                              android:layout_width="@dimen/_9sdp"
+                              android:layout_height="@dimen/_16sdp"
+                              android:layout_alignParentLeft="true"
+                              android:layout_centerVertical="true"
+                              android:layout_marginLeft="@dimen/_10sdp"
+                              android:background="@color/transparent"
+                              android:scaleType="fitCenter"
+                              android:src="@drawable/ic_new_back"
+                              android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:layout_marginLeft="@dimen/_15sdp">
 
+                    <ImageButton
+                        android:id="@+id/Goback"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/transparent"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -73,29 +92,31 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="150dp">
+                    android:layout_height="150dp"
+                    android:layout_weight="1">
 
                     <com.hendraanggrian.appcompat.widget.SocialEditText
                         android:id="@+id/description_edit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/transparent"
+                        android:fontFamily="@font/pop_light"
                         android:gravity="start"
                         android:hint="Describe your video"
                         android:paddingStart="15dp"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
 
 
                     <TextView
                         android:id="@+id/aditional_details_text_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:layout_gravity="center_vertical|end"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
                         android:textColor="@color/gray"
                         android:textSize="14dp"
                         android:textStyle="normal" />
@@ -133,6 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:fontFamily="@font/pop_light"
                         android:gravity="center"
                         android:padding="5dp"
                         android:text="@string/hashtags"
@@ -153,6 +175,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:fontFamily="@font/pop_light"
                         android:padding="5dp"
                         android:text="@string/friends"
                         android:textColor="@color/black" />
@@ -178,9 +201,10 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/pop_light"
                     android:gravity="center"
                     android:text="#duet with"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:visibility="visible" />
@@ -192,7 +216,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@+id/duet_txt"
-                    android:background="@drawable/d_dark_gray_border"
+                    android:background="@drawable/d_round_gray25"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -201,7 +225,7 @@
                         android:layout_height="24dp"
                         android:layout_marginStart="5dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_play_icon"
+                        android:src="@drawable/ic_new_play"
                         android:tint="@color/black" />
 
                     <TextView
@@ -240,7 +264,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
                         android:src="@drawable/ic_lock"
-                        android:tint="@color/black" />
+                        android:tint="@color/black"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -283,8 +308,9 @@
                         android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        android:src="@drawable/ic_comment"
-                        android:tint="@color/black" />
+                        android:src="@drawable/ic_new_msg"
+                        android:tint="@color/black"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -319,8 +345,9 @@
                         android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        android:src="@drawable/ic_video"
-                        android:tint="@color/black" />
+                        android:src="@drawable/ic_new_record"
+                        android:tint="@color/black"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -383,7 +410,7 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/d_gray_border"
+                android:background="@drawable/d_round_gray25"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -392,16 +419,16 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="5dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_drafts" />
+                    android:src="@drawable/ic_new_draft" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+                    android:fontFamily="@font/pop_regular"
                     android:text="Draft"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
@@ -411,22 +438,23 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_rounded_background"
+                android:background="@drawable/login_btn_draw"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_upload" />
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:src="@drawable/ic_new_upload" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:text="Post Video"
+                    android:fontFamily="@font/pop_regular"
+                    android:text="Publish"
                     android:textColor="@color/white"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
             </LinearLayout>
 

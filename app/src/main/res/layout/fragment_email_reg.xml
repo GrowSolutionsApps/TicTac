@@ -20,18 +20,26 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-
-            <EditText
-                android:id="@+id/email_edit"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_centerVertical="true"
-                android:backgroundTint="@color/transparent"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textColorHint="@color/graycolor"
-                android:textSize="14dp" />
+                android:background="@drawable/edttxt_bg">
+
+                <EditText
+                    android:id="@+id/email_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@null"
+                    android:hint="Email"
+                    android:fontFamily="@font/pop_regular"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/graycolor"
+                    android:textSize="14dp" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/line_below_email"
@@ -40,22 +48,31 @@
                 android:layout_below="@+id/main_div"
                 android:background="@color/graycolor" />
 
-
-            <EditText
-                android:id="@+id/password_edt"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_below="@+id/email_edit"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/transparent"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHint="@color/graycolor"
-                android:textSize="14dp"
-                android:visibility="gone" />
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/edttxt_bg">
 
+                <EditText
+                    android:id="@+id/password_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@null"
+                    android:backgroundTint="@color/transparent"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:fontFamily="@font/pop_regular"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/graycolor"
+                    android:textSize="14dp"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/line_below_et"
@@ -78,11 +95,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/pop_light"
                 android:justificationMode="inter_word"
                 android:paddingTop="15dp"
-                android:text="By signing up, you confirm that you agree to our  Terms of \nUse and have read and understood our Privacy Policy."
+                android:text="@string/signupText"
                 android:textColor="@color/gray"
-                android:textSize="12dp"
+                android:textSize="11dp"
                 android:visibility="visible" />
 
             <TextView
@@ -100,7 +118,7 @@
         </RelativeLayout>
 
 
-        <Button
+<!--        <Button
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -113,8 +131,32 @@
             android:text="Next"
             android:textColor="@color/white"
             android:textSize="14dp"
-            android:theme="@style/Button_style" />
+            android:theme="@style/Button_style" />-->
 
+        <LinearLayout
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:background="@drawable/img_new_next_bg_disable"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_new_baseline_check"
+                android:text="Next"
+                android:textSize="14dp"
+                android:theme="@style/Button_style" />
+
+        </LinearLayout>
     </RelativeLayout>
 
 </FrameLayout>

@@ -68,15 +68,12 @@ import java.util.List;
 
 public class Video_Recoder_A extends AppCompatActivity implements View.OnClickListener {
 
-
     CameraView cameraView;
-
     int number = 0;
-
     ArrayList<String> videopaths = new ArrayList<>();
-
-    ImageButton record_image;
-    ImageButton done_btn;
+    RelativeLayout record_image;
+    TextView done_btn;
+    ImageButton img_record;
     boolean is_recording = false;
     boolean is_flash_on = false;
     String isSelected;
@@ -84,10 +81,10 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
     SegmentedProgressBar video_progress;
     LinearLayout camera_options;
     ImageButton rotate_camera, cut_video_btn;
-
-
+    TextView short_video_text, long_video_text;
     public static int Sounds_list_Request_code = 1;
     TextView add_sound_txt;
+    LinearLayout add_sound_txt_lay;
 
     int sec_passed = 0;
     long time_in_milis = 0;
@@ -97,7 +94,7 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
     int recording_time = 3;
 
 
-    TextView short_video_time_txt, long_video_time_txt;
+    RelativeLayout short_video_time_txt, long_video_time_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +108,8 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
         cameraView = findViewById(R.id.camera);
         camera_options = findViewById(R.id.camera_options);
         record_image = findViewById(R.id.record_image);
+        short_video_text = findViewById(R.id.short_video_text);
+        long_video_text = findViewById(R.id.long_video_text);
 
         findViewById(R.id.upload_layout).setOnClickListener(this);
 
@@ -120,6 +119,7 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
         cut_video_btn.setOnClickListener(this);
 
         done_btn = findViewById(R.id.done);
+        img_record = findViewById(R.id.img_record);
         done_btn.setEnabled(false);
         done_btn.setOnClickListener(this);
 
@@ -132,7 +132,9 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.Goback).setOnClickListener(this);
 
         add_sound_txt = findViewById(R.id.add_sound_txt);
+        add_sound_txt_lay = findViewById(R.id.add_sound_txt_lay);
         add_sound_txt.setOnClickListener(this);
+        add_sound_txt_lay.setOnClickListener(this);
 
         findViewById(R.id.time_btn).setOnClickListener(this);
 
@@ -213,14 +215,15 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
                 audio.start();
             }
 
-            done_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_not_done));
+//            done_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_not_done));
+            done_btn.setTextColor(getResources().getColor(R.color.colorwhite_30));
             done_btn.setEnabled(false);
 
             video_progress.resume();
 
 
-            record_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_recoding_yes));
-
+            record_image.setBackground(getResources().getDrawable(R.drawable.ic_recoding_yes));
+            img_record.setBackground(null);
             cut_video_btn.setVisibility(View.GONE);
 
 
@@ -230,8 +233,7 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
             add_sound_txt.setClickable(false);
             rotate_camera.setVisibility(View.GONE);
 
-        }
-        else if (is_recording) {
+        } else if (is_recording) {
 
             is_recording = false;
 
@@ -250,11 +252,11 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
             cut_video_btn.setVisibility(View.VISIBLE);
 
             findViewById(R.id.upload_layout).setEnabled(true);
-            record_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_recoding_no));
+            record_image.setBackground(getResources().getDrawable(R.drawable.ic_recoding_no));
+            img_record.setBackground(null);
             camera_options.setVisibility(View.VISIBLE);
 
-        }
-        else if (sec_passed > (Variables.recording_duration / 1000)) {
+        } else if (sec_passed > (Variables.recording_duration / 1000)) {
             Functions.Show_Alert(this, "Alert", "Video only can be a " + (int) Variables.recording_duration / 1000 + " S");
         }
 
@@ -263,10 +265,12 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
 
     public void Check_done_btn_enable() {
         if (sec_passed > (Variables.min_time_recording / 1000)) {
-            done_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_done_red));
+//            done_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_done_red));
+            done_btn.setTextColor(getResources().getColor(R.color.white));
             done_btn.setEnabled(true);
         } else {
-            done_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_not_done));
+//            done_btn.setImageDrawable(getResources().getDrawable(R.drawable.ic_not_done));
+            done_btn.setTextColor(getResources().getColor(R.color.colorwhite_30));
             done_btn.setEnabled(false);
         }
     }
@@ -417,7 +421,7 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
 
                                     Functions.cancel_determinent_loader();
 
-                                    Functions.show_toast(Video_Recoder_A.this,"Try Again");
+                                    Functions.show_toast(Video_Recoder_A.this, "Try Again");
                                 } catch (Exception e) {
                                 }
                             }
@@ -557,11 +561,19 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.add_sound_txt:
+                Log.w("msg", "musictok sound Add 1");
                 Intent intent = new Intent(this, SoundList_Main_A.class);
                 startActivityForResult(intent, Sounds_list_Request_code);
                 overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_top);
                 break;
+            case R.id.add_sound_txt_lay:
 
+                Log.w("msg", "musictok sound Add 2");
+
+                Intent intent_lay = new Intent(this, SoundList_Main_A.class);
+                startActivityForResult(intent_lay, Sounds_list_Request_code);
+                overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_top);
+                break;
             case R.id.time_btn:
                 if (sec_passed + 1 < Variables.recording_duration / 1000) {
                     RecordingTimeRang_F recordingTimeRang_f = new RecordingTimeRang_F(new Fragment_Callback() {
@@ -609,17 +621,18 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
 
 
             case R.id.short_video_time_txt:
-                RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                param.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                short_video_time_txt.setLayoutParams(param);
+//                RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                param.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//                short_video_time_txt.setLayoutParams(param);
 
-                RelativeLayout.LayoutParams param4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                param4.addRule(RelativeLayout.START_OF, R.id.short_video_time_txt);
-                long_video_time_txt.setLayoutParams(param4);
+//                RelativeLayout.LayoutParams param4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                param4.addRule(RelativeLayout.START_OF, R.id.short_video_time_txt);
+//                long_video_time_txt.setLayoutParams(param4);
 
-                short_video_time_txt.setTextColor(getResources().getColor(R.color.white));
-                long_video_time_txt.setTextColor(getResources().getColor(R.color.graycolor2));
-
+                short_video_time_txt.setBackgroundColor(getResources().getColor(R.color.white));
+                short_video_text.setTextColor(Color.parseColor("#505050"));
+                long_video_time_txt.setBackgroundColor(getResources().getColor(R.color.black));
+                long_video_text.setTextColor(Color.parseColor("#C5C4C4"));
                 Variables.recording_duration = 60000;
 
                 initlize_Video_progress();
@@ -627,17 +640,20 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
 
 
             case R.id.long_video_time_txt:
-                RelativeLayout.LayoutParams param2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                param2.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                long_video_time_txt.setLayoutParams(param2);
+//                RelativeLayout.LayoutParams param2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                param2.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//                long_video_time_txt.setLayoutParams(param2);
 
-                RelativeLayout.LayoutParams param3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                param3.addRule(RelativeLayout.END_OF, R.id.long_video_time_txt);
-                short_video_time_txt.setLayoutParams(param3);
+//                RelativeLayout.LayoutParams param3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                param3.addRule(RelativeLayout.END_OF, R.id.long_video_time_txt);
+//                short_video_time_txt.setLayoutParams(param3);
 
-                short_video_time_txt.setTextColor(getResources().getColor(R.color.graycolor2));
-                long_video_time_txt.setTextColor(getResources().getColor(R.color.white));
-
+//                short_video_time_txt.setBackgroundColor(getResources().getColor(R.color.graycolor2));
+//                long_video_time_txt.setBackgroundColor(getResources().getColor(R.color.white));
+                short_video_time_txt.setBackgroundColor(getResources().getColor(R.color.black));
+                short_video_text.setTextColor(Color.parseColor("#C5C4C4"));
+                long_video_time_txt.setBackgroundColor(getResources().getColor(R.color.white));
+                long_video_text.setTextColor(Color.parseColor("#505050"));
                 Variables.recording_duration = 60000;
 
                 initlize_Video_progress();
@@ -807,7 +823,7 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
             @Override
             protected void onPostExecute(String result) {
                 if (result.equals("error")) {
-                    Functions.show_toast(Video_Recoder_A.this,"Try Again");
+                    Functions.show_toast(Video_Recoder_A.this, "Try Again");
                 } else {
                     Functions.cancel_indeterminent_loader();
                     // Chnage_Video_size(Variables.gallery_trimed_video, Variables.gallery_resize_video);
@@ -959,7 +975,6 @@ public class Video_Recoder_A extends AppCompatActivity implements View.OnClickLi
 
 
     }
-
 
 
 }

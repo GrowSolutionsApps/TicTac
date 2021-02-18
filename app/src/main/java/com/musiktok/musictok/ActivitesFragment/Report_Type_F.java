@@ -56,6 +56,7 @@ public class Report_Type_F extends RootFragment implements View.OnClickListener 
 
         view = inflater.inflate(R.layout.fragment_report_type, container, false);
         view.findViewById(R.id.back_btn).setOnClickListener(this);
+        view.findViewById(R.id.rel_back).setOnClickListener(this);
         recyclerview = view.findViewById(R.id.recylerview);
 
         Bundle bundle = getArguments();
@@ -173,6 +174,9 @@ public class Report_Type_F extends RootFragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back_btn:
+                getActivity().onBackPressed();
+                break;
+            case R.id.rel_back:
                 getActivity().onBackPressed();
                 break;
         }

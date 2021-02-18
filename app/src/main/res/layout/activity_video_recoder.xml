@@ -14,8 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_layout">
+            android:layout_height="match_parent">
 
             <com.wonderkiln.camerakit.CameraView
                 android:id="@+id/camera"
@@ -54,9 +53,11 @@
                 android:background="@color/transparent"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_white_cross" />
+                android:src="@drawable/ic_new_close_record" />
 
             <LinearLayout
+                android:id="@+id/add_sound_txt_lay"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -75,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Add Sound"
+                    android:text="Sounds"
                     android:textColor="@color/white"
                     android:textSize="13dp"
                     android:textStyle="bold" />
@@ -92,40 +93,129 @@
 
                 <ImageButton
                     android:id="@+id/rotate_camera"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:background="@color/transparent"
-                    android:padding="5dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_rotate_cam" />
+                    android:src="@drawable/ic_new_camera" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/pop_regular"
+                    android:text="Flip"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
 
                 <ImageButton
                     android:id="@+id/flash_camera"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:background="@color/transparent"
-                    android:padding="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_flash_on" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/pop_regular"
+                    android:text="Flash"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
+
                 <ImageButton
                     android:id="@+id/time_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:background="@color/transparent"
-                    android:padding="5dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_timer" />
+                    android:src="@drawable/ic_new_time" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/pop_regular"
+                    android:text="Timer"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
 
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black">
+
+                <RelativeLayout
+                    android:id="@+id/time_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/long_video_time_txt"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/short_video_time_txt"
+                        android:background="@color/black">
+
+                        <TextView
+                            android:id="@+id/long_video_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:padding="6dp"
+                            android:text="60s"
+                            android:textColor="@color/graycolor2"
+                            android:textSize="@dimen/_17sdp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/short_video_time_txt"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/short_video_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:padding="6dp"
+                            android:text="15s"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_17sdp" />
+
+                    </RelativeLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="2dp"
+                        android:src="@color/white"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
+
+                android:layout_above="@+id/bottom_layout"
                 android:layout_margin="15dp">
 
 
@@ -148,28 +238,39 @@
                             android:layout_height="32dp"
                             android:src="@drawable/ic_gallery_icon" />
 
-                        <TextView
+               <!--         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="Upload"
                             android:textColor="@color/white"
                             android:textSize="12dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold" />-->
 
                     </LinearLayout>
 
 
                 </RelativeLayout>
 
-                <ImageButton
+                <RelativeLayout
                     android:id="@+id/record_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:layout_centerHorizontal="true"
-                    android:background="@color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_recoding_no" />
+                    android:background="@drawable/img_new_record_bg">
+
+
+                    <ImageButton
+                        android:id="@+id/img_record"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_record" />
+
+                </RelativeLayout>
+
 
                 <ImageButton
                     android:id="@+id/cut_video_btn"
@@ -181,19 +282,28 @@
                     android:background="@color/transparent"
                     android:padding="3dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_back_cross" />
+                    android:src="@drawable/ic_white_cross" />
 
-                <ImageButton
+                <!-- <ImageButton
+                     android:id="@+id/done"
+                     android:layout_width="40dp"
+                     android:layout_height="40dp"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerVertical="true"
+                     android:background="@color/transparent"
+                     android:padding="3dp"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/ic_not_done" />-->
+                <TextView
                     android:id="@+id/done"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@color/transparent"
-                    android:padding="3dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_not_done" />
-
+                    android:text="Done"
+                    android:textColor="@color/colorwhite_30"
+                    android:fontFamily="@font/pop_regular"
+                    android:textSize="@dimen/_15sdp"/>
             </RelativeLayout>
 
 
@@ -211,54 +321,6 @@
                 android:textSize="100sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true">
-
-            <RelativeLayout
-                android:id="@+id/time_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/long_video_time_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/short_video_time_txt"
-                    android:padding="6dp"
-                    android:text="60s"
-                    android:textColor="@color/graycolor2"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/short_video_time_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:padding="6dp"
-                    android:text="15s"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="2dp"
-                    android:src="@color/white" />
-
-            </RelativeLayout>
-
 
         </RelativeLayout>
 

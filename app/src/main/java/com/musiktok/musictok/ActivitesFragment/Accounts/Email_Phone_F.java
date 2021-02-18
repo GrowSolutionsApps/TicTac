@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -29,7 +30,7 @@ public class Email_Phone_F extends RootFragment {
     protected TabLayout tabLayout;
     TextView signup_txt;
     protected ViewPager pager;
-    ImageView Goback;
+    RelativeLayout rel_back;
     private ViewPagerAdapter adapter;
     Phone_F fragment1;
     String fromWhere;
@@ -57,6 +58,12 @@ public class Email_Phone_F extends RootFragment {
                 getActivity().onBackPressed();
             }
         });
+        view.findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         signup_txt = view.findViewById(R.id.signup_txt);
         Bundle bundle = getArguments();
@@ -78,7 +85,7 @@ public class Email_Phone_F extends RootFragment {
         adapter = new ViewPagerAdapter(getResources(), getChildFragmentManager());
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
-
+        tabLayout.setSelectedTabIndicatorHeight(0);
         fragment1 = (Phone_F) adapter.getItem(pager.getCurrentItem());
 
         setupTabIcons();
@@ -93,6 +100,7 @@ public class Email_Phone_F extends RootFragment {
 
         View view2 = LayoutInflater.from(getActivity()).inflate(R.layout.item_tabs_signup, null);
         TextView text_history1 = view2.findViewById(R.id.text_history);
+        text_history1.setTextColor(getResources().getColor(R.color.tab_unselected_text_color));
         text_history1.setText("Email");
         tabLayout.getTabAt(1).setCustomView(view2);
 
@@ -105,11 +113,11 @@ public class Email_Phone_F extends RootFragment {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        text_history.setTextColor(getResources().getColor(R.color.app_color));
+                        text_history.setTextColor(getResources().getColor(R.color.tab_selected_text_color));
                         break;
 
                     case 1:
-                        text_history.setTextColor(getResources().getColor(R.color.app_color));
+                        text_history.setTextColor(getResources().getColor(R.color.tab_selected_text_color));
                         break;
                 }
                 tab.setCustomView(v);
@@ -122,10 +130,10 @@ public class Email_Phone_F extends RootFragment {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        text_history.setTextColor(getResources().getColor(R.color.black));
+                        text_history.setTextColor(getResources().getColor(R.color.tab_unselected_text_color));
                         break;
                     case 1:
-                        text_history.setTextColor(getResources().getColor(R.color.black));
+                        text_history.setTextColor(getResources().getColor(R.color.tab_unselected_text_color));
                         break;
 
                 }

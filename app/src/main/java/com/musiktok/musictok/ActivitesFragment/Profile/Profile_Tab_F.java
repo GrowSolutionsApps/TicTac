@@ -31,12 +31,14 @@ import com.musiktok.musictok.Interfaces.Callback;
 import com.musiktok.musictok.Interfaces.Fragment_Callback;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -86,8 +88,8 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
     public ImageView imageView;
     public TextView follow_count_txt, fans_count_txt, heart_count_txt, draft_count_txt;
 
-    ImageView setting_btn;
-
+    ImageView setting_btn, back_btn_new;
+    RelativeLayout rel_back;
 
     protected TabLayout tabLayout;
 
@@ -106,6 +108,7 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
 
     PushNotificationSettingModel pushNotificationSetting_model;
     PrivacyPolicySettingModel privacyPolicySetting_model;
+    RelativeLayout relEdit;
 
     public Profile_Tab_F() {
 
@@ -184,6 +187,7 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
         imageView.setOnClickListener(this);
 
         video_count_txt = view.findViewById(R.id.video_count_txt);
+        relEdit = view.findViewById(R.id.relEdit);
 
         follow_count_txt = view.findViewById(R.id.follow_count_txt);
         fans_count_txt = view.findViewById(R.id.fan_count_txt);
@@ -193,6 +197,8 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
         Show_draft_count();
 
         setting_btn = view.findViewById(R.id.message_btn);
+        back_btn_new = view.findViewById(R.id.back_btn_new);
+        rel_back = view.findViewById(R.id.rel_back);
         setting_btn.setOnClickListener(this);
 
 
@@ -210,7 +216,25 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
         tabs_main_layout = view.findViewById(R.id.tabs_main_layout);
         top_layout = view.findViewById(R.id.top_layout);
 
-
+        relEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("msg", "Edit_Click== ");
+                Open_Edit_profile();
+            }
+        });
+        back_btn_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+        rel_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
         ViewTreeObserver observer = top_layout.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
@@ -259,12 +283,15 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
             draft_count_txt.setText("" + files.length);
             if (files.length <= 0) {
                 view.findViewById(R.id.draft_btn).setVisibility(View.GONE);
+                view.findViewById(R.id.viewdraft).setVisibility(View.GONE);
             } else {
                 view.findViewById(R.id.draft_btn).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.viewdraft).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.draft_btn).setOnClickListener(this);
             }
         } catch (Exception e) {
             view.findViewById(R.id.draft_btn).setVisibility(View.GONE);
+            view.findViewById(R.id.viewdraft).setVisibility(View.GONE);
         }
     }
 
@@ -305,17 +332,17 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
 
         View view1 = LayoutInflater.from(context).inflate(R.layout.item_tabs_profile_menu, null);
         ImageView imageView1 = view1.findViewById(R.id.image);
-        imageView1.setImageDrawable(getResources().getDrawable(R.drawable.ic_my_video_color));
+        imageView1.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_my_video));
         tabLayout.getTabAt(0).setCustomView(view1);
 
         View view2 = LayoutInflater.from(context).inflate(R.layout.item_tabs_profile_menu, null);
         ImageView imageView2 = view2.findViewById(R.id.image);
-        imageView2.setImageDrawable(getResources().getDrawable(R.drawable.ic_liked_video_gray));
+        imageView2.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_liked_video));
         tabLayout.getTabAt(1).setCustomView(view2);
 
         View view3 = LayoutInflater.from(context).inflate(R.layout.item_tabs_profile_menu, null);
         ImageView imageView3 = view3.findViewById(R.id.image);
-        imageView3.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_gray));
+        imageView3.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_lock_unselect));
         tabLayout.getTabAt(2).setCustomView(view3);
 
 
@@ -338,19 +365,19 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
                             create_popup_layout.startAnimation(aniRotate);
                         }
 
-                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_my_video_color));
+                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_my_video));
                         break;
 
                     case 1:
                         create_popup_layout.clearAnimation();
                         create_popup_layout.setVisibility(View.GONE);
-                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_liked_video_color));
+                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_liked_video_select));
                         break;
 
                     case 2:
                         create_popup_layout.clearAnimation();
                         create_popup_layout.setVisibility(View.GONE);
-                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_black));
+                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_lock_selecr));
                         break;
                 }
                 tab.setCustomView(v);
@@ -363,14 +390,15 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
 
                 switch (tab.getPosition()) {
                     case 0:
-                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_my_video_gray));
+                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_my_video_unselect));
+                        image.setColorFilter(ContextCompat.getColor(context, R.color.my_video_unselect_color), android.graphics.PorterDuff.Mode.MULTIPLY);
                         break;
                     case 1:
-                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_liked_video_gray));
+                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_liked_video));
                         break;
 
                     case 2:
-                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_gray));
+                        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_new_lock_unselect));
                         break;
                 }
 
@@ -595,7 +623,6 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
         Edit_Profile_F edit_profile_f = new Edit_Profile_F(new Fragment_Callback() {
             @Override
             public void Responce(Bundle bundle) {
-
                 update_profile();
             }
         });
@@ -644,9 +671,9 @@ public class Profile_Tab_F extends RootFragment implements View.OnClickListener 
 
                 switch (item.getItemId()) {
 
-                    case R.id.edit_Profile_id:
+                    /*case R.id.edit_Profile_id:
                         Open_Edit_profile();
-                        break;
+                        break;*/
 
                     case R.id.favourite_id:
                         OpenFavouriteVideos();

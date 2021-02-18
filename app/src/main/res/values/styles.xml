@@ -7,8 +7,8 @@
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
-
 
 
     <style name="white_status" parent="Theme.AppCompat.Light.NoActionBar">
@@ -17,6 +17,7 @@
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+
     </style>
 
 
@@ -27,11 +28,20 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--        <item name="android:windowBackground">@color/creatediy_tab</item>-->
 
+    </style>
     <style name="CustomAppTheme" parent="Theme.AppCompat">
         <item name="colorAccent">@color/app_color</item>
     </style>
-
 
 
     <style name="black_status" parent="Theme.AppCompat.Light.NoActionBar">
@@ -43,19 +53,17 @@
     </style>
 
 
-
     <style name="transparent_status" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/black</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-      <!--  <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
-       <!-- <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">false</item>-->
+        <!--  <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
+        <!-- <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">false</item>-->
         <!--<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>-->
-       <!-- <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>-->
+        <!-- <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>-->
     </style>
-
 
 
     <style name="Transparent" parent="Theme.AppCompat.Light.NoActionBar">
@@ -75,7 +83,7 @@
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
-
+        <item name="fontFamily">@font/pop_medium</item>
     </style>
 
 
@@ -98,8 +106,8 @@
 
     <style name="RadioButton" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/app_color</item>
-        <item name="android:textColorSecondary">@color/graycolor</item>
-        <item name="colorControlNormal">@color/graycolor</item>
+        <item name="android:textColorSecondary">#BEBEBE</item>
+        <item name="colorControlNormal">#BEBEBE</item>
     </style>
 
     <style name="Progressbar_style" parent="Theme.AppCompat.Light.Dialog.Alert">

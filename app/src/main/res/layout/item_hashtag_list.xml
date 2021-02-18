@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Title"
+                android:fontFamily="@font/pop_medium"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -47,6 +48,7 @@
             android:text="0.0"
             android:id="@+id/views_txt"
             android:textSize="13dp"
+            android:fontFamily="@font/pop_regular"
             android:minWidth="35dp"
             android:gravity="center"
             android:backgroundTint="@color/gainsboro"

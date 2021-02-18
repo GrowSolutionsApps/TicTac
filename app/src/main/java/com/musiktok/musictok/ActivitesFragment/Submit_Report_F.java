@@ -68,6 +68,7 @@ public class Submit_Report_F extends RootFragment implements View.OnClickListene
 
 
         view.findViewById(R.id.back_btn).setOnClickListener(this);
+        view.findViewById(R.id.rel_back).setOnClickListener(this);
         view.findViewById(R.id.report_reason_layout).setOnClickListener(this);
         view.findViewById(R.id.submit_btn).setOnClickListener(this);
 
@@ -205,6 +206,11 @@ public class Submit_Report_F extends RootFragment implements View.OnClickListene
             case R.id.back_btn:
                 getActivity().onBackPressed();
                 break;
+
+            case R.id.rel_back:
+                getActivity().onBackPressed();
+                break;
+
         }
     }
 }

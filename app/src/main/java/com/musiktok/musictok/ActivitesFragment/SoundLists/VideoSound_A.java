@@ -95,6 +95,7 @@ public class VideoSound_A extends AppCompatActivity implements View.OnClickListe
 
 
         findViewById(R.id.back_btn).setOnClickListener(this);
+        findViewById(R.id.rel_back).setOnClickListener(this);
 
         findViewById(R.id.save_btn).setOnClickListener(this);
         findViewById(R.id.create_btn).setOnClickListener(this);
@@ -180,6 +181,9 @@ public class VideoSound_A extends AppCompatActivity implements View.OnClickListe
             case R.id.back_btn:
                 onBackPressed();
                 break;
+            case R.id.rel_back:
+                onBackPressed();
+                break;
             case R.id.save_btn:
                 if (audio_file != null && audio_file.exists()) {
                     try {
@@ -194,6 +198,7 @@ public class VideoSound_A extends AppCompatActivity implements View.OnClickListe
 
             case R.id.create_btn:
                 if (Functions.getSharedPreference(this).getBoolean(Variables.islogin, false)) {
+                    Log.w("msg", "audio_file== " + audio_file);
                     if (audio_file != null && audio_file.exists()) {
                         StopPlaying();
                         Open_video_recording();
@@ -397,8 +402,8 @@ public class VideoSound_A extends AppCompatActivity implements View.OnClickListe
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
-        prDownloader = PRDownloader.download(item.sound_url_acc, Variables.app_hided_folder, Variables.SelectedAudio_AAC)
+        Log.w("msg", "sound_url_acc== " + "http://www.growsolutions.in/www/Musiktok/" + item.sound_url_acc);
+        prDownloader = PRDownloader.download("http://www.growsolutions.in/www/Musiktok/" + item.sound_url_acc, Variables.app_hided_folder, Variables.SelectedAudio_AAC)
                 .build();
 
         prDownloader.start(new OnDownloadListener() {
@@ -410,6 +415,7 @@ public class VideoSound_A extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onError(Error error) {
+                Log.w("msg", "Error-- " + error.isConnectionError());
                 progressDialog.dismiss();
             }
         });

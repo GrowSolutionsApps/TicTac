@@ -1,5 +1,6 @@
 package com.musiktok.musictok.ActivitesFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -64,21 +65,51 @@ public class Splash_A extends AppCompatActivity {
             }
 
             public void onFinish() {
-
-                Intent intent = new Intent(Splash_A.this, WelComeActivity.class);
+                if (getBooleanData(Splash_A.this, "isFirst", true)) {
+                    saveData(Splash_A.this, "isFirst", false);
+                    Intent intent = new Intent(Splash_A.this, WelComeActivity.class);
 //                Intent intent = new Intent(Splash_A.this, MainMenuActivity.class);
-
-                if (getIntent().getExtras() != null) {
-                    intent.putExtras(getIntent().getExtras());
-                    setIntent(null);
+                    if (getIntent().getExtras() != null) {
+                        intent.putExtras(getIntent().getExtras());
+                        setIntent(null);
+                    }
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                    finish();
+                } else {
+                    Intent intent = new Intent(Splash_A.this, MainMenuActivity.class);
+                    if (getIntent().getExtras() != null) {
+                        intent.putExtras(getIntent().getExtras());
+                        setIntent(null);
+                    }
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                    finish();
                 }
-
-                startActivity(intent);
-                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-                finish();
 
             }
         }.start();
+    }
+
+    static public boolean getBooleanData(Context context, String key, boolean def) {
+
+        try {
+            if (context != null)
+                return context.getSharedPreferences("video_pref", Context.MODE_PRIVATE).getBoolean(key, def);
+            else
+                return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    static public void saveData(Context context, String key, boolean val) {
+        if (context == null)
+            return;
+        context.getSharedPreferences("video_pref", Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(key, val)
+                .apply();
     }
 
     @Override

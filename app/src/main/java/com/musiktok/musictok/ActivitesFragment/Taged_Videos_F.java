@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -63,9 +64,9 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
     ArrayList<Home_Get_Set> data_list;
     MyVideos_Adapter adapter;
 
-    String tag_id,tag_txt,favourite="0";
+    String tag_id, tag_txt, favourite = "0";
 
-    TextView tag_txt_view,tag_title_txt;
+    TextView tag_txt_view, tag_title_txt;
     ProgressBar progress_bar;
 
     ImageButton fav_btn;
@@ -79,37 +80,35 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_taged_videos, container, false);
-        context=getContext();
+        view = inflater.inflate(R.layout.fragment_taged_videos, container, false);
+        context = getContext();
 
-        if(Variables.sharedPreferences==null){
-            Variables.sharedPreferences=getActivity().getSharedPreferences(Variables.pref_name,Context.MODE_PRIVATE);
+        if (Variables.sharedPreferences == null) {
+            Variables.sharedPreferences = getActivity().getSharedPreferences(Variables.pref_name, Context.MODE_PRIVATE);
         }
 
 
-        Bundle bundle=getArguments();
-        if(bundle!=null){
-            tag_txt=bundle.getString("tag");
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            tag_txt = bundle.getString("tag");
         }
 
 
-        tag_txt_view=view.findViewById(R.id.tag_txt_view);
-        tag_title_txt=view.findViewById(R.id.tag_title_txt);
+        tag_txt_view = view.findViewById(R.id.tag_txt_view);
+        tag_title_txt = view.findViewById(R.id.tag_title_txt);
 
         tag_txt_view.setText(tag_txt);
         tag_title_txt.setText(tag_txt);
 
-        fav_btn=view.findViewById(R.id.fav_btn);
+        fav_btn = view.findViewById(R.id.fav_btn);
         fav_btn.setOnClickListener(this);
 
-        recyclerView=view.findViewById(R.id.recylerview);
-        scrollView=view.findViewById(R.id.scrollview);
+        recyclerView = view.findViewById(R.id.recylerview);
+        scrollView = view.findViewById(R.id.scrollview);
 
 
-        top_layout=view.findViewById(R.id.top_layout);
-        recylerview_main_layout=view.findViewById(R.id.recylerview_main_layout);
-
-
+        top_layout = view.findViewById(R.id.top_layout);
+        recylerview_main_layout = view.findViewById(R.id.recylerview_main_layout);
 
 
         ViewTreeObserver observer = top_layout.getViewTreeObserver();
@@ -118,7 +117,7 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
             @Override
             public void onGlobalLayout() {
 
-                final int height=top_layout.getMeasuredHeight();
+                final int height = top_layout.getMeasuredHeight();
 
                 top_layout.getViewTreeObserver().removeGlobalOnLayoutListener(
                         this);
@@ -130,8 +129,8 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
                     public void onGlobalLayout() {
 
                         // TODO Auto-generated method stub
-                        RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) recylerview_main_layout.getLayoutParams();
-                        params.height= (int) (recylerview_main_layout.getMeasuredHeight()+ height);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) recylerview_main_layout.getLayoutParams();
+                        params.height = (int) (recylerview_main_layout.getMeasuredHeight() + height);
                         recylerview_main_layout.setLayoutParams(params);
                         recylerview_main_layout.getViewTreeObserver().removeGlobalOnLayoutListener(
                                 this);
@@ -141,9 +140,6 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
 
             }
         });
-
-
-
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -156,7 +152,7 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
                         recyclerView.setNestedScrollingEnabled(true);
 
 
-                    }else {
+                    } else {
                         recyclerView.setNestedScrollingEnabled(false);
                     }
 
@@ -165,23 +161,22 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
         }
 
 
-
-        recyclerView=view.findViewById(R.id.recylerview);
-        final GridLayoutManager layoutManager = new GridLayoutManager(context,3);
+        recyclerView = view.findViewById(R.id.recylerview);
+        final GridLayoutManager layoutManager = new GridLayoutManager(context, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             recyclerView.setNestedScrollingEnabled(false);
-        }else {
+        } else {
             recyclerView.setNestedScrollingEnabled(true);
         }
 
-        data_list=new ArrayList<>();
-        adapter=new MyVideos_Adapter(context, data_list,  new Adapter_Click_Listener() {
+        data_list = new ArrayList<>();
+        adapter = new MyVideos_Adapter(context, data_list, new Adapter_Click_Listener() {
             @Override
             public void onItemClick(View view, int pos, Object object) {
-                Home_Get_Set item=(Home_Get_Set) object;
+                Home_Get_Set item = (Home_Get_Set) object;
                 OpenWatchVideo(pos);
             }
         });
@@ -189,8 +184,7 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
         recyclerView.setAdapter(adapter);
 
 
-
-        progress_bar=view.findViewById(R.id.progress_bar);
+        progress_bar = view.findViewById(R.id.progress_bar);
 
         view.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,10 +192,13 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
                 getActivity().onBackPressed();
             }
         });
-
+        view.findViewById(R.id.rel_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
         Call_Api_For_get_Allvideos();
-
-
 
 
         return view;
@@ -213,7 +210,7 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
         progress_bar.setVisibility(View.VISIBLE);
         JSONObject parameters = new JSONObject();
         try {
-            parameters.put("user_id", Variables.sharedPreferences.getString(Variables.u_id,""));
+            parameters.put("user_id", Variables.sharedPreferences.getString(Variables.u_id, ""));
             parameters.put("hashtag", tag_txt);
 
 
@@ -232,47 +229,46 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
 
     }
 
-    public void Parse_data(String responce){
+    public void Parse_data(String responce) {
 
         data_list.clear();
 
         try {
-            JSONObject jsonObject=new JSONObject(responce);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
-                JSONArray msgArray=jsonObject.getJSONArray("msg");
+            JSONObject jsonObject = new JSONObject(responce);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
+                JSONArray msgArray = jsonObject.getJSONArray("msg");
 
 
-
-                    for (int i=0;i<msgArray.length();i++) {
-                        JSONObject itemdata = msgArray.optJSONObject(i);
-                        JSONObject Hashtag=itemdata.optJSONObject("Hashtag");
-                        tag_id=Hashtag.optString("id");
-                        favourite=Hashtag.optString("favourite");
-
-
-                        JSONObject Video=itemdata.optJSONObject("Video");
-                        JSONObject User=Video.optJSONObject("User");
-                        JSONObject Sound=Video.optJSONObject("Sound");
-                        JSONObject UserPrivacy=User.optJSONObject("PrivacySetting");
-                        JSONObject UserPushNotification=User.optJSONObject("PushNotification");
-
-                        Home_Get_Set item= Functions.Parse_video_data(User,Sound,Video,UserPrivacy,UserPushNotification);
-
-                        data_list.add(item);
-                    }
+                for (int i = 0; i < msgArray.length(); i++) {
+                    JSONObject itemdata = msgArray.optJSONObject(i);
+                    JSONObject Hashtag = itemdata.optJSONObject("Hashtag");
+                    tag_id = Hashtag.optString("id");
+                    favourite = Hashtag.optString("favourite");
 
 
-                if(favourite!=null && favourite.equalsIgnoreCase("1")){
+                    JSONObject Video = itemdata.optJSONObject("Video");
+                    JSONObject User = Video.optJSONObject("User");
+                    JSONObject Sound = Video.optJSONObject("Sound");
+                    JSONObject UserPrivacy = User.optJSONObject("PrivacySetting");
+                    JSONObject UserPushNotification = User.optJSONObject("PushNotification");
+
+                    Home_Get_Set item = Functions.Parse_video_data(User, Sound, Video, UserPrivacy, UserPushNotification);
+
+                    data_list.add(item);
+                }
+
+
+                if (favourite != null && favourite.equalsIgnoreCase("1")) {
                     fav_btn.setBackgroundResource(R.drawable.ic_my_favourite);
                 }
 
                 adapter.notifyDataSetChanged();
                 progress_bar.setVisibility(View.GONE);
 
-            }else {
+            } else {
                 progress_bar.setVisibility(View.GONE);
-                Functions.show_toast(getActivity(),jsonObject.optString("msg"));
+                Functions.show_toast(getActivity(), jsonObject.optString("msg"));
             }
 
         } catch (JSONException e) {
@@ -289,35 +285,34 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
     }
 
     private void OpenWatchVideo(int postion) {
-        Intent intent=new Intent(getActivity(), WatchVideos_F.class);
+        Intent intent = new Intent(getActivity(), WatchVideos_F.class);
         intent.putExtra("arraylist", data_list);
-        intent.putExtra("position",postion);
+        intent.putExtra("position", postion);
         startActivity(intent);
     }
 
 
-    public void Call_api_fav_hashtag(){
+    public void Call_api_fav_hashtag() {
 
-        JSONObject params=new JSONObject();
+        JSONObject params = new JSONObject();
         try {
-            params.put("user_id",Variables.sharedPreferences.getString(Variables.u_id,""));
-            params.put("hashtag_id",tag_id);
+            params.put("user_id", Variables.sharedPreferences.getString(Variables.u_id, ""));
+            params.put("hashtag_id", tag_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Functions.Show_loader(context,false,false);
+        Functions.Show_loader(context, false, false);
         ApiRequest.Call_Api(getActivity(), ApiLinks.addHashtagFavourite, params, new Callback() {
             @Override
             public void Responce(String resp) {
                 Functions.cancel_loader();
 
-                if(favourite.equalsIgnoreCase("0")){
-                    favourite="1";
+                if (favourite.equalsIgnoreCase("0")) {
+                    favourite = "1";
                     fav_btn.setBackgroundResource(R.drawable.ic_my_favourite);
-                }
-                else {
-                    favourite="0";
+                } else {
+                    favourite = "0";
                     fav_btn.setBackgroundResource(R.drawable.ic_my_un_favourite);
                 }
 
@@ -330,7 +325,7 @@ public class Taged_Videos_F extends RootFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.fav_btn:
                 Call_api_fav_hashtag();
                 break;

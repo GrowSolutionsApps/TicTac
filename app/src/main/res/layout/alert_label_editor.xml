@@ -15,9 +15,9 @@
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:scaleType="fitCenter"
-            android:layout_centerVertical="true"
             android:src="@drawable/ic_fav"
             android:tint="@color/black" />
 
@@ -27,9 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="30dp"
+            android:fontFamily="@font/pop_medium"
             android:hint="Username"
             android:text="Add to Favourites"
-            android:textColor="@color/black"
+            android:textColor="#E2000000"
             android:textSize="14dp" />
 
     </RelativeLayout>
@@ -62,9 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="30dp"
+            android:fontFamily="@font/pop_medium"
             android:hint="Username"
             android:text="Not Insterested"
-            android:textColor="@color/black"
+            android:textColor="#E2000000"
             android:textSize="14dp" />
 
     </RelativeLayout>
@@ -95,9 +97,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="30dp"
+            android:fontFamily="@font/pop_medium"
             android:hint="Username"
             android:text="Report"
-            android:textColor="@color/black"
+            android:textColor="#E2000000"
             android:textSize="14dp" />
 
     </RelativeLayout>
@@ -129,8 +132,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="30dp"
+            android:fontFamily="@font/pop_medium"
             android:text="Delete"
-            android:textColor="@color/black"
+            android:textColor="#E2000000"
             android:textSize="14dp" />
 
     </RelativeLayout>

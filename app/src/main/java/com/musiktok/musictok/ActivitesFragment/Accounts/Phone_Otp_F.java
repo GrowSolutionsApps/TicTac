@@ -48,15 +48,16 @@ import static android.content.Context.MODE_PRIVATE;
 public class Phone_Otp_F extends Fragment implements View.OnClickListener {
     View view;
 
-    TextView tv1,tv2,request_call,resend_code,edit_num , text_label;
+    TextView tv1, tv2, request_call, resend_code, edit_num, text_label;
 
     ImageView back;
     RelativeLayout rl1;
     SharedPreferences sharedPreferences;
     String phone_num;
     User_Model user_model;
-    Button send_otp_btn;
+    LinearLayout send_otp_btn;
     PinView et_code;
+
     public Phone_Otp_F() {
         // Required empty public constructor
     }
@@ -71,7 +72,7 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
         phone_num = bundle.getString("phone_number");
         user_model = (User_Model) bundle.getSerializable("user_data");
-        sharedPreferences= Functions.getSharedPreference(getContext());
+        sharedPreferences = Functions.getSharedPreference(getContext());
 
         METHOD_findviewbyid();
         METHOD_onclicklistner();
@@ -91,11 +92,15 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
                 if (txtName.length() == 4) {
                     send_otp_btn.setEnabled(true);
                     send_otp_btn.setClickable(true);
+                    send_otp_btn.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg));
+
                 } else {
                     send_otp_btn.setEnabled(false);
                     send_otp_btn.setClickable(false);
+                    send_otp_btn.setBackground(getActivity().getResources().getDrawable(R.drawable.img_new_next_bg_disable));
                 }
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -105,7 +110,7 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    public void METHOD_findviewbyid(){
+    public void METHOD_findviewbyid() {
         tv1 = (TextView) view.findViewById(R.id.tv1_id);
         tv2 = (TextView) view.findViewById(R.id.tv2_id);
         request_call = (TextView) view.findViewById(R.id.request_call);
@@ -120,7 +125,7 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
 
     }
 
-    public void METHOD_onclicklistner(){
+    public void METHOD_onclicklistner() {
         back.setOnClickListener(this);
         request_call.setOnClickListener(this);
         resend_code.setOnClickListener(this);
@@ -128,14 +133,14 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
         send_otp_btn.setOnClickListener(this);
     }
 
-    public void METHOD_oneminutetimer(){
+    public void METHOD_oneminutetimer() {
         rl1.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(60000,1000){
+        new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long l) {
-                tv1.setText("Resend code 00:"+ l/1000);
-                tv2.setText("Call Me 00:"+ l/1000);
+                tv1.setText("Resend code 00:" + l / 1000);
+                tv2.setText("Call Me 00:" + l / 1000);
             }
 
             @Override
@@ -152,15 +157,15 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
         JSONObject parameters = new JSONObject();
         try {
 
-            parameters.put("phone", phone_num );
-            parameters.put("verify","1");
+            parameters.put("phone", phone_num);
+            parameters.put("verify", "1");
             parameters.put("code", et_code.getText().toString());
         } catch (
                 JSONException e) {
             e.printStackTrace();
         }
 
-        Functions.Show_loader(getActivity(),false,false);
+        Functions.Show_loader(getActivity(), false, false);
         ApiRequest.Call_Api(getActivity(), ApiLinks.verifyPhoneNo, parameters, new Callback() {
             @Override
             public void Responce(String resp) {
@@ -171,13 +176,13 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
         });
     }
 
-    public void parse_otp_data(String loginData){
+    public void parse_otp_data(String loginData) {
         try {
-            JSONObject jsonObject=new JSONObject(loginData);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
+            JSONObject jsonObject = new JSONObject(loginData);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
                 call_api_for_phone_registeration();
-            }else{
+            } else {
                 Toast.makeText(getContext(), jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
             }
 
@@ -190,55 +195,52 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
         JSONObject parameters = new JSONObject();
         try {
 
-            parameters.put("phone", phone_num );
-        }
-        catch (
+            parameters.put("phone", phone_num);
+        } catch (
                 JSONException e) {
             e.printStackTrace();
         }
 
-        Functions.Show_loader(getActivity(),false,false);
+        Functions.Show_loader(getActivity(), false, false);
         ApiRequest.Call_Api(getActivity(), ApiLinks.registerUser, parameters, new Callback() {
             @Override
             public void Responce(String resp) {
                 Functions.cancel_loader();
-               parse_login_data(resp);
+                parse_login_data(resp);
 
             }
         });
     }
 
-    public void parse_login_data(String loginData){
+    public void parse_login_data(String loginData) {
         try {
-            JSONObject jsonObject=new JSONObject(loginData);
-            String code=jsonObject.optString("code");
-            if(code.equals("200")){
-                JSONObject jsonArray=jsonObject.getJSONObject("msg");
+            JSONObject jsonObject = new JSONObject(loginData);
+            String code = jsonObject.optString("code");
+            if (code.equals("200")) {
+                JSONObject jsonArray = jsonObject.getJSONObject("msg");
                 JSONObject userdata = jsonArray.getJSONObject("User");
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString(Variables.u_id,userdata.optString("id"));
-                editor.putString(Variables.f_name,userdata.optString("first_name"));
-                editor.putString(Variables.l_name,userdata.optString("last_name"));
-                editor.putString(Variables.u_name,userdata.optString("username"));
-                editor.putString(Variables.gender,userdata.optString("gender"));
-                editor.putString(Variables.u_pic,userdata.optString("profile_pic"));
-                editor.putString(Variables.auth_token,userdata.optString("auth_token"));
-                editor.putBoolean(Variables.islogin,true);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(Variables.u_id, userdata.optString("id"));
+                editor.putString(Variables.f_name, userdata.optString("first_name"));
+                editor.putString(Variables.l_name, userdata.optString("last_name"));
+                editor.putString(Variables.u_name, userdata.optString("username"));
+                editor.putString(Variables.gender, userdata.optString("gender"));
+                editor.putString(Variables.u_pic, userdata.optString("profile_pic"));
+                editor.putString(Variables.auth_token, userdata.optString("auth_token"));
+                editor.putBoolean(Variables.islogin, true);
                 editor.commit();
-                Variables.sharedPreferences=Functions.getSharedPreference(getContext());
-                Variables.user_id= Functions.getSharedPreference(getContext()).getString(Variables.u_id,"");
+                Variables.sharedPreferences = Functions.getSharedPreference(getContext());
+                Variables.user_id = Functions.getSharedPreference(getContext()).getString(Variables.u_id, "");
 
-                Variables.Reload_my_videos=true;
-                Variables.Reload_my_videos_inner=true;
-                Variables.Reload_my_likes_inner=true;
-                Variables.Reload_my_notification=true;
+                Variables.Reload_my_videos = true;
+                Variables.Reload_my_videos_inner = true;
+                Variables.Reload_my_likes_inner = true;
+                Variables.Reload_my_notification = true;
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), MainMenuActivity.class));
-            }
+            } else if (code.equals("201") && !jsonObject.optString("msg").contains("have been blocked")) {
 
-            else if(code.equals("201") && !jsonObject.optString("msg").contains("have been blocked")){
-
-                if(user_model.date_of_birth==null) {
+                if (user_model.date_of_birth == null) {
                     Functions.Show_Alert(getActivity(), null, "Incorrect login details", "Signup", "Cancel", new Callback() {
                         @Override
                         public void Responce(java.lang.String resp) {
@@ -247,11 +249,11 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
                             }
                         }
                     });
-                }else {
+                } else {
                     Open_Username_F();
                 }
 
-            }else{
+            } else {
                 Toast.makeText(getContext(), jsonObject.optString("msg"), Toast.LENGTH_SHORT).show();
             }
 
@@ -261,26 +263,26 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
     }
 
 
-    public void Open_Username_F(){
-             Create_Username_F signUp_fragment = new Create_Username_F("fromPhone");
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("user_model", user_model);
-            signUp_fragment.setArguments(bundle);
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.dob_fragment, signUp_fragment).commit();
+    public void Open_Username_F() {
+        Create_Username_F signUp_fragment = new Create_Username_F("fromPhone");
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user_model", user_model);
+        signUp_fragment.setArguments(bundle);
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.dob_fragment, signUp_fragment).commit();
 
     }
 
-    public void Open_DoB_Fragment(){
+    public void Open_DoB_Fragment() {
         DOB_F DOBF = new DOB_F();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right);
         Bundle bundle = new Bundle();
         user_model.phone_no = phone_num;
         bundle.putSerializable("user_model", user_model);
-        bundle.putString("fromWhere","fromPhone");
+        bundle.putString("fromWhere", "fromPhone");
         DOBF.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.replace(R.id.sign_up_fragment, DOBF).commit();
@@ -303,10 +305,10 @@ public class Phone_Otp_F extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.send_otp_btn:
-                    call_api_for_code_verification();
-                    break;
+                call_api_for_code_verification();
+                break;
 
-                }
         }
+    }
 
 }

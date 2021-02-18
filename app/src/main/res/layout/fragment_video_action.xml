@@ -24,290 +24,363 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:fontFamily="@font/pop_semibold"
                     android:padding="10dp"
-                    android:text="Share"
+                    android:text="Share To"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+                    android:textSize="18dp" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recylerview"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:minHeight="150dp" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/share_notice_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Share feature is only available in live mode"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="14dp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    <RelativeLayout
+                        android:id="@+id/share_rel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            </RelativeLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="15dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <LinearLayout
-                        android:id="@+id/save_video_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_save_round" />
-
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recylerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            android:minHeight="150dp"
+                            android:nestedScrollingEnabled="false" />
 
                         <TextView
+                            android:id="@+id/share_notice_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:maxWidth="60dp"
-                            android:maxLines="2"
-                            android:text="Save Video"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-                    </LinearLayout>
+                            android:layout_centerInParent="true"
+                            android:text="Share feature is only available in live mode"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
+                    </RelativeLayout>
 
-                    <LinearLayout
-                        android:id="@+id/copy_layout"
-                        android:layout_width="wrap_content"
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_below="@+id/share_rel"
+                        android:scrollbars="none">
 
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_copy_clipboard" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Copy link"
-                            android:maxWidth="60dp"
-                            android:maxLines="2"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-                    </LinearLayout>
+                            android:layout_marginTop="25dp"
+                            android:layout_marginBottom="15dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp">
+
+                            <LinearLayout
+                                android:id="@+id/save_video_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
 
 
-                    <LinearLayout
-                        android:id="@+id/delete_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_download" />
 
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_delete" />
+                                </RelativeLayout>
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Delete Video"
-                            android:maxWidth="60dp"
-                            android:gravity="center"
-                            android:maxLines="2"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/duet_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_duet" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Save Video"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+                            </LinearLayout>
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Duet"
-                            android:maxWidth="60dp"
-                            android:maxLines="2"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
+                            <LinearLayout
+                                android:id="@+id/copy_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
 
 
-                    </LinearLayout>
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_copylink" />
+
+                                </RelativeLayout>
 
 
-                    <LinearLayout
-                        android:id="@+id/privacy_setting_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_video_privacy" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Copy link"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+                            </LinearLayout>
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:text="Privacy \nsettings"
-                            android:textColor="@color/black"
-                            android:textSize="13dp" />
+                            <LinearLayout
+                                android:id="@+id/delete_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
 
 
-                    </LinearLayout>
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_delete" />
+
+                                </RelativeLayout>
 
 
-                    <LinearLayout
-                        android:id="@+id/add_favourite_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Delete Video"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+                            </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_round_favourite" />
+                            <LinearLayout
+                                android:id="@+id/duet_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:maxWidth="60dp"
-                            android:maxLines="2"
-                            android:text="Add\nfavourites"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
 
 
-                    </LinearLayout>
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_duet" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Duet"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
 
 
-                    <LinearLayout
-                        android:id="@+id/not_intrested_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_round_not_insterted" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:maxWidth="60dp"
-                            android:maxLines="2"
-                            android:text="Not\ninterested"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-
-                    </LinearLayout>
+                            </LinearLayout>
 
 
-                    <LinearLayout
-                        android:id="@+id/report_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_round_report" />
+                            <LinearLayout
+                                android:id="@+id/privacy_setting_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:visibility="gone">
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:text="Report"
-                            android:maxWidth="60dp"
-                            android:maxLines="2"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
 
 
-                    </LinearLayout>
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_video_privacy" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:text="Privacy \nsettings"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
 
 
-                </LinearLayout>
+                            </LinearLayout>
 
-            </HorizontalScrollView>
 
+                            <LinearLayout
+                                android:id="@+id/add_favourite_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_fav" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Add\nfavourites"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/not_intrested_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_dislike" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Not\ninterested"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/report_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/img_new_next_bg_disable">
+
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitCenter"
+                                        android:src="@drawable/ic_new_report" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="center"
+                                    android:maxWidth="60dp"
+                                    android:maxLines="2"
+                                    android:text="Report"
+                                    android:textColor="@color/black"
+                                    android:textSize="12dp" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 
         <ProgressBar

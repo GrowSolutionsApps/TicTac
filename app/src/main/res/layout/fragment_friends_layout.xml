@@ -24,19 +24,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-                <ImageButton
-                    android:id="@+id/back_btn"
-                    android:layout_width="@dimen/back_btn_width"
-                    android:layout_height="@dimen/back_btn_height"
+                <!--
+                                <ImageButton
+                                    android:id="@+id/back_btn"
+                                    android:layout_width="@dimen/_9sdp"
+                                    android:layout_height="@dimen/_16sdp"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="@dimen/_15sdp"
+                                    android:background="@color/transparent"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/ic_new_back"
+                                    android:tint="@color/black" />-->
+                <RelativeLayout
+                    android:id="@+id/rel_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/transparent"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    android:layout_marginLeft="@dimen/_15sdp">
 
+                    <ImageButton
+                        android:id="@+id/back_btn"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/transparent"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_new_back"
+                        android:tint="@color/black" />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/title_txt"
@@ -48,7 +67,7 @@
                     android:text="Friends"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/pop_medium" />
 
 
             </RelativeLayout>
@@ -126,7 +145,7 @@
                 android:layout_below="@+id/search_layout"
                 android:visibility="gone">
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/whoops"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,19 +153,27 @@
                     android:layout_centerHorizontal="true"
                     android:text="Whoops!"
                     android:textColor="@color/dimgray"
-                    android:textSize="22sp" />
+                    android:textSize="22sp" />-->
+                <ImageView
+                    android:id="@+id/img_noData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_new_nodata" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/whoops"
+                    android:layout_below="@+id/img_noData"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="55dp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="55dp"
                     android:gravity="center"
                     android:text="There is no data you have so far"
                     android:textColor="@color/dimgray"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_12sdp" />
 
             </RelativeLayout>
 

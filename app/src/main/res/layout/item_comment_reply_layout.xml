@@ -1,79 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mainlayout">
+    android:id="@+id/mainlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:id="@+id/line"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
 
     <RelativeLayout
+        android:id="@+id/upperlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/upperlayout"
-        android:layout_marginTop="5dp"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_pic"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_user_icon"
-            android:id="@+id/user_pic"/>
+            android:src="@drawable/ic_user_icon" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/user_pic"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/user_pic"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/reply_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/like_layout"
-                android:id="@+id/reply_layout">
+                android:orientation="vertical">
 
 
                 <TextView
+                    android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:text="Username"
-                    android:textSize="12dp"
-                    android:id="@+id/username"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="12dp"
+                    android:fontFamily="@font/pop_medium" />
 
                 <com.hendraanggrian.appcompat.widget.SocialTextView
+                    android:id="@+id/message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/message"
-                    android:text="Comment message here..."
-                    android:textSize="11dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="2dp"
-                    app:socialFlags="hashtag|mention"
+                    android:text="Comment message here..."
+                    android:textColor="@color/black"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/pop_regular"
                     app:hashtagColor="@color/colorAccent"
                     app:mentionColor="@color/colorAccent"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="10dp"/>
+                    app:socialFlags="hashtag|mention" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/like_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="1dp"
-                android:layout_marginRight="10dp"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/like_layout">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:padding="1dp">
 
                 <ImageView
                     android:id="@+id/reply_like_image"
@@ -84,13 +85,14 @@
                     android:src="@drawable/ic_heart_gray_out" />
 
                 <TextView
+                    android:id="@+id/like_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
                     android:layout_gravity="center"
-                    android:id="@+id/like_txt"
-                    android:textSize="10dp"
-                    android:textColor="@color/black" />
+                    android:text=""
+                    android:fontFamily="@font/pop_light"
+                    android:textColor="@color/black"
+                    android:textSize="10dp" />
 
             </LinearLayout>
 

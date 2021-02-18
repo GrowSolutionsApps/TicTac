@@ -9,10 +9,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.musiktok.musictok.ActivitesFragment.SoundLists.SoundList_Main_A;
@@ -39,6 +41,7 @@ public class GallerySelectedVideo_A extends AppCompatActivity implements View.On
     TextView add_sound_txt;
     String draft_file,isSelected;
     String sound_file_path;
+    LinearLayout add_sound_txt_lay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +59,9 @@ public class GallerySelectedVideo_A extends AppCompatActivity implements View.On
         findViewById(R.id.Goback).setOnClickListener(this);
 
         add_sound_txt=findViewById(R.id.add_sound_txt);
+        add_sound_txt_lay=findViewById(R.id.add_sound_txt_lay);
         add_sound_txt.setOnClickListener(this);
+        add_sound_txt_lay.setOnClickListener(this);
 
         findViewById(R.id.next_btn).setOnClickListener(this);
 
@@ -111,8 +116,17 @@ public class GallerySelectedVideo_A extends AppCompatActivity implements View.On
                 break;
 
             case R.id.add_sound_txt:
+                Log.w("msg","musictok sound Add 3");
+
                 Intent intent =new Intent(this, SoundList_Main_A.class);
                 startActivityForResult(intent, Video_Recoder_A.Sounds_list_Request_code);
+                overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_top);
+                break;
+            case R.id.add_sound_txt_lay:
+                Log.w("msg","musictok sound Add 4");
+
+                Intent intent_lay =new Intent(this, SoundList_Main_A.class);
+                startActivityForResult(intent_lay, Video_Recoder_A.Sounds_list_Request_code);
                 overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_top);
                 break;
 

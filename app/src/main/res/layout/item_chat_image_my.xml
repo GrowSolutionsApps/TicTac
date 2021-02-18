@@ -65,6 +65,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:textColor="@color/darkgray"
+          android:fontFamily="@font/pop_light"
         android:layout_marginRight="15dp"/>
 
 

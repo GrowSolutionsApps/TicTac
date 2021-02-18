@@ -33,6 +33,7 @@
         android:layout_below="@+id/chatimage"
         android:textSize="10dp"
         android:id="@+id/message_seen"
+        android:fontFamily="@font/pop_light"
         android:textColor="@color/darkgray"
         android:layout_marginLeft="15dp"/>
 </RelativeLayout>

@@ -44,10 +44,10 @@ public class MyVideos_Adapter extends RecyclerView.Adapter<MyVideos_Adapter.Cust
     }
 
     @Override
-    public MyVideos_Adapter.CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewtype) {
+    public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewtype) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_myvideo_layout,null);
         view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
-        MyVideos_Adapter.CustomViewHolder viewHolder = new MyVideos_Adapter.CustomViewHolder(view);
+        CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
 
@@ -89,7 +89,7 @@ public class MyVideos_Adapter extends RecyclerView.Adapter<MyVideos_Adapter.Cust
 
 
     @Override
-    public void onBindViewHolder(final MyVideos_Adapter.CustomViewHolder holder, final int i) {
+    public void onBindViewHolder(final CustomViewHolder holder, final int i) {
         final Home_Get_Set item= dataList.get(i);
         holder.setIsRecyclable(false);
 

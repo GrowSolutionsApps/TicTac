@@ -109,6 +109,7 @@ public class Edit_Profile_F extends RootFragment implements View.OnClickListener
 
 
         view.findViewById(R.id.Goback).setOnClickListener(this);
+        view.findViewById(R.id.rel_back).setOnClickListener(this);
         view.findViewById(R.id.save_btn).setOnClickListener(this);
         view.findViewById(R.id.upload_pic_btn).setOnClickListener(this);
 
@@ -167,10 +168,8 @@ public class Edit_Profile_F extends RootFragment implements View.OnClickListener
     }
 
 
-
-
-
     int privious_height = 0;
+
     public void setKeyboardListener() {
 
         KeyboardHeightProvider keyboardHeightProvider = new KeyboardHeightProvider(getActivity());
@@ -182,7 +181,7 @@ public class Edit_Profile_F extends RootFragment implements View.OnClickListener
                     privious_height = Math.abs(height);
                 }
 
-                LinearLayout main_layout= view.findViewById(R.id.main_layout);
+                LinearLayout main_layout = view.findViewById(R.id.main_layout);
 
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(main_layout.getWidth(), main_layout.getHeight());
                 params.bottomMargin = height + privious_height;
@@ -201,17 +200,16 @@ public class Edit_Profile_F extends RootFragment implements View.OnClickListener
     }
 
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.Goback:
-
                 getActivity().onBackPressed();
                 break;
-
+            case R.id.rel_back:
+                getActivity().onBackPressed();
+                break;
             case R.id.save_btn:
                 if (Check_Validation()) {
                     Call_Api_For_Edit_profile();
